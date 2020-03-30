@@ -3,7 +3,7 @@
     <main :class="[ 'main', { 'main--bg' : !isProfileLoaded }]" >
       <Header v-if="this.$route.path != '/login' && isAuthenticated" />
       <div class="main__content">
-        <transition name="fade" mode="out-in">
+        <transition name="fade-in-up" mode="out-in">
           <router-view />
         </transition>
       </div>
