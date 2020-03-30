@@ -19,7 +19,9 @@ html, body, #app  {
   flex-grow: 1;
   margin: 0;
 }
-
+button {
+  border: none;
+}
 #app {
   text-align: center;
   font-size: 1.4rem;
@@ -82,11 +84,22 @@ h1, h2, h3, h4, h5 {
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
   width: 100%;
   margin: 0 auto;
   max-width: rem(1360);
   position: relative;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    margin-top: 7rem;
+    @include tablet {
+      margin-top: 10rem;
+    }
+  }
 
   &--bg {
     background: url("./assets/ART.svg") no-repeat center;
@@ -101,7 +114,7 @@ h1, h2, h3, h4, h5 {
   }
 
   @include desktop-lg {
-    padding: 2.5rem;
+    padding: 0 1.5rem 2.5rem;
     max-width: rem(1360);
   }
 }

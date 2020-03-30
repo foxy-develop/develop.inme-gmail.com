@@ -9,9 +9,55 @@
 
 @keyframes revealHeader {
   from {
-    transform: translateY(-5rem);
+    opacity: 0;
+    transform: translateY(-4rem);
   }
   to {
+    opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes reveal-form {
+  from {
+    transform: translate(0, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flag-reveal {
+  from {
+    transform: translateY(-50%) translateX(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes reveal-top {
+  from {
+    transform: translate(0, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@keyframes reveal-logo {
+  from {
+    transform: scaleY(0) translate(0, -15%);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1) translate(0, 0);
+    opacity: 1;
   }
 }

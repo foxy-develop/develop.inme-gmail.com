@@ -1,92 +1,83 @@
 <template>
-    <form class="form" @submit.prevent="login">
-      <label
-        class="login-form__label">
-        <span>Введите номер телефона: </span>
-        <div class="login-form__check">
-          <i :class="['flag-icon','flag-icon-' + country]"></i>
-          <imask-input
-            v-if="!isPhoneApproved"
-            ref="phone"
-            class="login-form__input phone-input"
-            v-model="phone"
-            :mask="mask"
-            :unmask="false"
-            inputmode="numeric"
-          />
-          <imask-input
-            v-if="isPhoneApproved"
-            ref="password"
-            class="login-form__input login-form__input--password"
-            v-model="password"
-            inputmode="numeric"
-            type="password"
-          />
-        </div>
-      </label>
-      <button
-        class="login-form__btn"
-        type="submit"
-      >
-        {{ isPhoneApproved ? "Подтвердить" : "Отправить" }}
-      </button>
-    </form>
+  <div class="auth">
+    <img class="auth__img" src="../assets/crystal.png" alt="crystal" />
+    <img class="auth__logo" src="../assets/logo.svg" alt="ARTDOCK" />
+    <LoginForm></LoginForm>
+  </div>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from "vuex";
-  import { IMaskComponent } from "vue-imask";
-  import allCountries from "../constants/country.codes";
+  import LoginForm from "../components/login-form"
 
   export default {
   name: "Login",
     data() {
       return {
-        password: process.env.NODE_ENV === "production" ? "" : "000000",
-        phone: process.env.NODE_ENV === "production" ? "" : "380633076719",
-        country: "",
-        mask: "+000000000000000",
         loading: false
       }
     },
     components: {
-      "imask-input": IMaskComponent
-    },
-    methods: {
-      ...mapActions(["AUTH_REQUEST", "AUTH_LOGIN"]),
-      getCountry: function() {
-        if (this.phone.length > 1) {
-          const country = allCountries.filter(el =>
-            !parseFloat(this.phone).toString().indexOf(el.dialCode));
-          if (country.length > 1) {
-            const sorted = country.slice().sort((a, b) => parseFloat(b.priority)
-              ? 0 : parseFloat(a.priority) > parseFloat(b.priority)
-              ? 1 : -1);
-            this.country = sorted[country.length - 1].iso2;
-          } else {
-            if (country.length > 0) this.country = country[0].iso2;
-          }
-        }
-      },
-      login() {
-        const { password, phone } = this;
-        this.loading = true;
-        this.isPhoneApproved
-          ? this.AUTH_LOGIN({ password, phone }).then(() => (this.loading = false))
-          : this.AUTH_REQUEST(phone).then(() => { this.loading = false; });
-      }
-    },
-    computed: {
-      ...mapGetters(["isPhoneApproved", "getErrorMessage"])
-    },
-    watch: {
-      phone: function() {
-        this.getCountry();
-      }
-    },
+      LoginForm
+    }
   }
 </script>
 
 <style scoped lang="scss">
+.auth {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: -7rem;
 
+  &__img {
+    height: auto;
+    max-height: 15.5rem;
+    max-width: 18.85rem;
+    width: 100%;
+    margin: -2rem auto 1rem;
+    position: relative;
+    left: -3rem;
+    animation: reveal-top;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.78, 0.13, 0, 0.97);
+    animation-fill-mode: forwards;
+    transform: translate(0, -100%);
+    opacity: 0;
+
+    @include tablet {
+      max-height: 20.5rem;
+      max-width: 24.85rem;
+      margin: -3rem auto 3rem;
+
+    }
+  }
+  &__logo {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 22.7rem;
+    width: 100%;
+    height: auto;
+    margin-bottom: 7rem;
+    animation: reveal-logo;
+    animation-duration: 0.35s;
+    animation-delay: 0.75s;
+    animation-timing-function: cubic-bezier(0, 0.82, 0.86, 0.85);
+    animation-fill-mode: forwards;
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    @include tablet {
+      margin-bottom: 10rem;
+    }
+    @include desktop-lg {
+      margin-bottom: 12rem;
+    }
+    @include desktop-lg {
+      margin-bottom: 5%;
+    }
+  }
+}
 </style>

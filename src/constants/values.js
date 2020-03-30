@@ -13,6 +13,9 @@ export default Object.freeze({
       EL_BG: 'rgba(255,255,255,0.05)',
       EL_BG_OFF: 'rgba(249, 251, 253, 0.05)',
       EL_BG_GREY: 'rgba(54, 66, 68, 0.3)',
+      ICON: '#7b868c',
+      ICON_LIGHT: 0,
+      ICON_DARK: 1
     },
     LIGHT: {
       BG: '#f1f5f8',
@@ -22,6 +25,9 @@ export default Object.freeze({
       EL_BG: 'rgba(255,255,255,1)',
       EL_BG_OFF: '#F9FBFD',
       EL_BG_GREY: '#F3F9FA',
+      ICON: '#95a4aa',
+      ICON_LIGHT: 1,
+      ICON_DARK: 0
     }
   }
 })

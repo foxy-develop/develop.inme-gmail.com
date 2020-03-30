@@ -1,16 +1,17 @@
 <template>
   <div id="app" :style="cssColorsVars">
-    <main class="main" >
-        <Header v-if="this.$route.path != '/login'" />
-        <transition name="fade" mode="out-in" tag="div" class="main__content">
+    <main :class="[ 'main', { 'main--bg' : !isProfileLoaded }]" >
+      <Header v-if="this.$route.path != '/login' && isAuthenticated" />
+      <div class="main__content">
+        <transition name="fade" mode="out-in">
           <router-view />
         </transition>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
-import { TokenService } from './services/storage.service';
 import { mapGetters } from "vuex";
 import Header from "./components/layout/Header";
 export default {
@@ -21,11 +22,8 @@ export default {
   components: {
     Header
   },
-  methods: {
-    showUI: () => !!TokenService.get()
-  },
   computed: {
-    ...mapGetters(['getProfile']),
+    ...mapGetters(['getProfile', 'isAuthenticated', 'isProfileLoaded']),
     cssColorsVars() {
       const theme = this.getProfile.theme.toUpperCase()
       return {
@@ -36,7 +34,9 @@ export default {
         '--el_bg': this.$const.COLOR[theme].EL_BG,
         '--el_bg_off': this.$const.COLOR[theme].EL_BG_OFF,
         '--el_bg_grey': this.$const.COLOR[theme].EL_BG_GREY,
-
+        '--icon_color': this.$const.COLOR[theme].ICON,
+        '--icon_light': this.$const.COLOR[theme].ICON_LIGHT,
+        '--icon_dark': this.$const.COLOR[theme].ICON_DARK,
         '--positive':this.$const.COLOR.POSITIVE,
         '--negative': this.$const.COLOR.NEGATIVE,
         '--gradient_bg': this.$const.COLOR.GRADIENT_BG,

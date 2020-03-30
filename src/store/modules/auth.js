@@ -57,18 +57,21 @@ const mutations = {
   [AUTH_REQUEST]: state => {
     state.status = "loading";
   },
-  [AUTH_SUCCESS]: state => {
+  [AUTH_SUCCESS]: (state, token) => {
+    state.token = token;
     state.status = true;
     state.phone = true;
     state.errorMessage = "";
   },
   [AUTH_ERROR]: (state, msg) => {
+    state.token = TokenService.get() || ''
     state.errorMessage = msg;
     state.status = "false";
   },
   [AUTH_LOGOUT]: () => {
     state.phone = false;
     state.errorMessage = null;
+    state.token = TokenService.get() || ''
   }
 };
 

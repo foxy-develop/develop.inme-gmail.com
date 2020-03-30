@@ -44,7 +44,6 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  console.log(store.getters.isAuthenticated)
   if (to.name !== 'Login' && !store.getters.isAuthenticated) next({ name: 'Login' });
   if (to.name === 'Login' && store.getters.isAuthenticated) next({ name: 'Home' });
   else next()
