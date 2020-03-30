@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="profile" v-if="isProfileLoaded">
     <svg
       class="profile__logo"
       xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@
     </svg>
     <span v-text="getProfile.name"></span>
     <button
-      class="profile__logout"
+      class="profile__logout" @click="logout"
     >
       <svg
         width="18"
@@ -48,6 +48,7 @@
 
 <script>
   import { mapGetters, mapActions } from "vuex";
+  import {USER_REQUEST} from "../../store/actions/user";
 
   export default {
     name: "Profile",
@@ -56,8 +57,17 @@
         username: null
       }
     },
+    async created() {
+      !this.isProfileLoaded && await this.USER_REQUEST();
+    },
+    methods: {
+      ...mapActions(['AUTH_LOGOUT', 'USER_REQUEST']),
+      logout: function () {
+        this.AUTH_LOGOUT().then(() => this.$router.push('/login'))
+      }
+    },
     computed: {
-      ...mapGetters(['getProfile'])
+      ...mapGetters(['getProfile', 'isProfileLoaded'])
     }
   }
 </script>

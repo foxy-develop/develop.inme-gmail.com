@@ -6,3 +6,12 @@
     background-position-y: 50%;
   }
 }
+
+@keyframes revealHeader {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

@@ -9,19 +9,21 @@ import {
 } from "../actions/auth";
 
 import AuthService from "../../api/auth.service";
+import { TokenService } from "../../services/storage.service";
 import router from "../../router";
+import { USER_REQUEST } from "../actions/user";
 
 const state = {
   status: false,
   errorMessage: null,
   phone: null,
-  showUI: false
+  token: TokenService.get() || ''
 };
 
 const getters = {
   isPhoneApproved: state => state.phone,
   getErrorMessage: state => state.errorMessage,
-  isShowUI: state => state.showUI
+  isAuthenticated: state => !!state.token
 };
 
 const actions = {
@@ -35,9 +37,7 @@ const actions = {
     const r = await AuthService.login(password, phone);
     if (r.status) {
       commit(AUTH_SUCCESS, r.token);
-      router.push("/").then(function() {
-        commit(AUTH_LOGIN);
-      });
+      router.push("/").then(() => dispatch(USER_REQUEST));
     } else {
       commit(AUTH_ERROR, r.message);
     }
@@ -46,7 +46,6 @@ const actions = {
   [AUTH_LOGOUT]: ({ commit }) => {
     AuthService.logout();
     commit(AUTH_LOGOUT);
-    router.push("/login").then(r => r);
   },
   [AUTH_ERROR]: ({ commit, dispatch }, msg) => {
     commit(AUTH_ERROR, msg);
@@ -59,7 +58,7 @@ const mutations = {
     state.status = "loading";
   },
   [AUTH_SUCCESS]: state => {
-    state.status = "true";
+    state.status = true;
     state.phone = true;
     state.errorMessage = "";
   },
@@ -67,14 +66,9 @@ const mutations = {
     state.errorMessage = msg;
     state.status = "false";
   },
-  [AUTH_LOGIN]: (state) => {
-    state.showUI = true;
-  },
   [AUTH_LOGOUT]: () => {
-    state.token = null;
     state.phone = false;
     state.errorMessage = null;
-    state.showUI = false;
   }
 };
 
