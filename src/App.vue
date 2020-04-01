@@ -2,11 +2,9 @@
   <div id="app" :style="cssColorsVars">
     <main :class="[ 'main', { 'main--bg' : !isProfileLoaded }]" >
       <Header v-if="this.$route.path != '/login' && isAuthenticated" />
-      <div class="main__content">
         <transition name="fade-in-up" mode="out-in">
           <router-view />
         </transition>
-      </div>
     </main>
   </div>
 </template>
@@ -37,6 +35,7 @@ export default {
         '--icon_color': this.$const.COLOR[theme].ICON,
         '--icon_light': this.$const.COLOR[theme].ICON_LIGHT,
         '--icon_dark': this.$const.COLOR[theme].ICON_DARK,
+        '--light-bg': this.$const.COLOR.LIGHT.BG,
         '--positive':this.$const.COLOR.POSITIVE,
         '--negative': this.$const.COLOR.NEGATIVE,
         '--gradient_bg': this.$const.COLOR.GRADIENT_BG,

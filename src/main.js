@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import VueNumber from "vue-number-animation";
 
 import ApiService from "./services/api.service";
 import { TokenService } from "./services/storage.service";
@@ -13,6 +14,7 @@ import VueMeta from 'vue-meta';
 // import wb from "./registerServiceWorker";
 
 Vue.use(VueMeta);
+Vue.use(VueNumber);
 
 // Vue.prototype.$workbox = wb;
 Vue.config.productionTip = false;

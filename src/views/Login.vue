@@ -1,5 +1,6 @@
 <template>
-  <div class="auth">
+  <div class="main-loader" v-if="enableLoader"></div>
+  <div class="auth" v-else>
     <img class="auth__img" src="../assets/crystal.png" alt="crystal" />
     <img class="auth__logo" src="../assets/logo.svg" alt="ARTDOCK" />
     <LoginForm></LoginForm>
@@ -8,16 +9,32 @@
 
 <script>
   import LoginForm from "../components/login-form"
-
+  import { mapGetters, mapActions } from "vuex";
   export default {
   name: "Login",
     data() {
       return {
-        loading: false
+        loading: false,
+        enableLoader: false
       }
     },
     components: {
       LoginForm
+    },
+    methods: {
+      ...mapActions(['DATA_REQUEST']),
+      ...mapGetters(['isChartDataLoaded', 'getChartData'])
+    },
+    async beforeRouteLeave(to,from,next) {
+      this.enableLoader = true;
+      const response = await this.DATA_REQUEST()
+
+      if (this.isChartDataLoaded()) {
+        console.log(this.getChartData())
+        this.enableLoader = false;
+        return next();
+      }
+
     }
   }
 </script>

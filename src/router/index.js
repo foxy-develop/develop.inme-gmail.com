@@ -4,7 +4,8 @@ import { TokenService } from "../services/storage.service";
 import store from "../store";
 
 Vue.use(Router);
-const Home = () => import("../views/Home");
+
+const Dashboard = () => import("../views/Dashboard")
 const About = () => import("../views/About");
 const Login = () => import("../views/Login");
 
@@ -20,8 +21,8 @@ const ifError = (to, from, next) => {
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Dashboard",
+    component: Dashboard
   },
   {
     path: "/about",
@@ -45,7 +46,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.name !== 'Login' && !store.getters.isAuthenticated) next({ name: 'Login' });
-  if (to.name === 'Login' && store.getters.isAuthenticated) next({ name: 'Home' });
+  if (to.name === 'Login' && store.getters.isAuthenticated) next({ name: 'Dashboard' });
   else next()
 })
 

@@ -1,7 +1,7 @@
 export default Object.freeze({
   COLOR: {
     POSITIVE: 'rgb(124, 206, 208)',
-    NEGATIVE: 'rgb(241, 113, 5)',
+    NEGATIVE: '#f1754e',
     GRADIENT_BG: 'radial-gradient(50% 69.11% at 50% 50%, #485f61 0%, #2f3739 100%)',
     MAIN: 'rgb(3, 199, 205)',
     DARK: {

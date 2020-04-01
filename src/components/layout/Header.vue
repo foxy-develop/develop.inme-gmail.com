@@ -58,6 +58,9 @@
     padding: 1.5rem;
     height: 10rem;
   }
+  @include desktop {
+    padding: 1.5rem 3rem;
+  }
   @include desktop-lg {
     padding: 2.5rem;
   }

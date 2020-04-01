@@ -7,13 +7,14 @@ import {
 
 import UserService from "../../api/user.service";
 import { AUTH_LOGOUT } from "../actions/auth";
+import { ThemeService } from "../../services/storage.service";
 
 const state = {
   status: "",
   profile: {
     name: "",
     phone: "",
-    theme: "dark"
+    theme: ThemeService.get() || "dark"
   }
 };
 

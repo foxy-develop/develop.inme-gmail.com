@@ -5,10 +5,9 @@
         class="login-form__label">
         <span v-if="!isPhoneApproved">Введите номер телефона: </span>
         <span v-else class="login-form__title"> Введите пароль из СМС:</span>
-        <div class="login-form__check">
+        <div class="login-form__check" v-if="!isPhoneApproved">
           <i :class="['flag-icon','flag-icon-' + country, isPhoneApproved && 'flag-icon--reverse']"></i>
           <imask-input
-            v-if="!isPhoneApproved"
             ref="phone"
             class="login-form__input phone-input"
             v-model="phone"
@@ -16,8 +15,9 @@
             :unmask="false"
             inputmode="numeric"
           />
+        </div>
+        <div class="login-form__check" v-else>
           <imask-input
-            v-if="isPhoneApproved"
             ref="password"
             class="login-form__input login-form__input--password"
             v-model="password"
@@ -65,6 +65,7 @@
               ? 0 : parseFloat(a.priority) > parseFloat(b.priority)
                 ? 1 : -1);
             this.country = sorted[country.length - 1].iso2;
+            return
           } else {
             if (country.length > 0) this.country = country[0].iso2;
           }
