@@ -80,7 +80,7 @@ export default {
       display: flex;
       font-family: "Rubik", sans-serif;
       font-weight: 500;
-      font-size: 4rem;
+      font-size: 3rem;
       line-height: 4rem;
       color: var(--text);
       margin-bottom: 0.5rem;

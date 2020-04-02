@@ -1,5 +1,6 @@
 <template>
   <div class="profile" v-if="isProfileLoaded">
+    <Notification/>
     <svg
       class="profile__icon"
       xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +48,13 @@
 <script>
   import { mapGetters, mapActions } from "vuex";
   import {USER_REQUEST} from "../../store/actions/user";
+  import Notification from "./Notification";
 
   export default {
     name: "Profile",
+    components: {
+      Notification
+    },
     data() {
       return {
         username: null
@@ -83,9 +88,6 @@
   transition: 0.3s ease-in-out;
   color: var(--text);
 
-  @include tablet {
-    margin-left: 4rem;
-  }
 
   &__name {
     display: none;

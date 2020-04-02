@@ -35,11 +35,13 @@ export default {
         '--icon_color': this.$const.COLOR[theme].ICON,
         '--icon_light': this.$const.COLOR[theme].ICON_LIGHT,
         '--icon_dark': this.$const.COLOR[theme].ICON_DARK,
-        '--light-bg': this.$const.COLOR.LIGHT.BG,
+        '--main-bg': this.$const.COLOR[theme].MAIN_BG,
         '--positive':this.$const.COLOR.POSITIVE,
         '--negative': this.$const.COLOR.NEGATIVE,
         '--gradient_bg': this.$const.COLOR.GRADIENT_BG,
-        '--main': this.$const.COLOR.MAIN
+        '--main': this.$const.COLOR.MAIN,
+        '--dropdown': this.$const.COLOR[theme].DROPDOWN,
+        '--badge_bg': this.$const.COLOR[theme].BADGE_BG
       };
     }
   }

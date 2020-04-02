@@ -28,7 +28,7 @@ const actions = {
       const r = await DataService.getChartsData(state.period);
       r.status.data.status
         ? commit(DATA_SUCCESS, { data: r.data, period: state.period })
-        : dispatch(AUTH_LOGOUT);
+        : dispatch(DATA_ERROR);
     }
     dispatch(DATA_PRELOAD);
   },
@@ -45,6 +45,10 @@ const actions = {
   },
   [DATA_FILTER]: ({ commit }, { type }) => {
     commit(DATA_FILTER, type);
+  },
+  [DATA_ERROR]: ({commit, dispatch}) => {
+    commit(DATA_ERROR);
+    this.$router.push('Error');
   }
 };
 

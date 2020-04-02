@@ -51,7 +51,9 @@
 .logo {
   width: 15.7rem;
   height: 2.2rem;
-
+  &:hover {
+    cursor: pointer;
+  }
   &--color {
     transition: 0.3s ease-in-out;
     fill: var(--text);

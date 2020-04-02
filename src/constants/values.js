@@ -6,6 +6,7 @@ export default Object.freeze({
     MAIN: 'rgb(3, 199, 205)',
     DARK: {
       // general
+      MAIN_BG: '#64737A',
       DARK: '#1e1e1e',
       GRADIENT_OPACITY: 1,
       FONT: 'rgb(255, 255, 255)',
@@ -15,10 +16,13 @@ export default Object.freeze({
       EL_BG_GREY: 'rgba(54, 66, 68, 0.3)',
       ICON: '#7b868c',
       ICON_LIGHT: 0,
-      ICON_DARK: 1
+      ICON_DARK: 1,
+      DROPDOWN: "#3d484a",
+      BADGE_BG: 'rgba(249, 251, 253, 0.05)',
     },
     LIGHT: {
       BG: '#f1f5f8',
+      MAIN_BG: '#f1f5f8',
       GRADIENT_OPACITY: 0,
       FONT: 'rgb(65, 77, 85)',
       FONT_GREY: '#D6D8D8',
@@ -27,7 +31,9 @@ export default Object.freeze({
       EL_BG_GREY: '#F3F9FA',
       ICON: '#95a4aa',
       ICON_LIGHT: 1,
-      ICON_DARK: 0
+      ICON_DARK: 0,
+      DROPDOWN: "#fff",
+      BADGE_BG: "rgba(255,255,255, .5)"
     }
   }
 })

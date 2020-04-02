@@ -1,8 +1,8 @@
 <template>
     <header class="header">
-      <div class="header__logo">
+      <router-link :tag="'div'" class="header__logo" exact :to="'/'">
         <Logo/>
-      </div>
+      </router-link>
       <div class="header__profile">
         <ThemeSwitcher/>
         <Profile/>
