@@ -26,7 +26,8 @@ import Section from "../components/layout/Section";
 import ChartCounter from "../components/counters/ChartCounter";
 import Block from "../components/layout/Block";
 import { mapGetters, mapActions } from "vuex";
-import LineChart from "../components/charts/LineChart";
+
+const LineChart = () => import(/* webpackChunkName: "LineChart" */"../components/charts/LineChart");
 
 export default {
   name: 'Dashboard',

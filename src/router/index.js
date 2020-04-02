@@ -5,9 +5,9 @@ import store from "../store";
 
 Vue.use(Router);
 
-const Dashboard = () => import("../views/Dashboard")
-const About = () => import("../views/About");
-const Login = () => import("../views/Login");
+const Dashboard = () => import(/* webpackChunkName: "Dashboard" */"../views/Dashboard")
+const About = () => import(/* webpackChunkName: "About" */"../views/About");
+const Login = () => import(/* webpackChunkName: "Login" */"../views/Login");
 
 const ifError = (to, from, next) => {
   if (TokenService.get()) {
