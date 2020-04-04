@@ -51,7 +51,7 @@ const routes = [
     component: Current
   },
   {
-    path: "/reports/",
+    path: "/reports",
     name: "Reports",
     component: Reports
   },
@@ -63,13 +63,13 @@ const routes = [
   {
     path: "*",
     name: "Error",
-    component: Report
+    component: Error
   }
 ];
 
 const router = new Router({
   mode: 'history',
-  base: process.env.NODE_ENV ==="/",
+  base: "./",
   routes
 });
 

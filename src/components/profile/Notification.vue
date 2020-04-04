@@ -19,7 +19,7 @@
             <router-link
               tag="li"
               v-for="num in 10"
-              :to="`/reports.]/${num}`"
+              :to="`/reports/${num}`"
               :class="['notification__item',  { 'notification__item--new' : (num < 4) }]"
               :key="num"
               v-ripple

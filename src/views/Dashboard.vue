@@ -1,81 +1,49 @@
 <template>
   <div class="main__content">
-    <Section :title="'Результаты поиска'">
-      <template v-slot:side>
-        <ChartCounter v-for="(val, key) in countersData" :counters="val" :type="key"/>
-      </template>
-      <template v-slot:content>
-        <Block>
-          <template v-slot:header>
-            <PeriodSwitcher
-              :current="getPeriod"
-              :name="'chart'"
-              :callback="DATA_SWITCH"
-            ></PeriodSwitcher>
-          </template>
-          <template v-slot:content>
-            <line-chart
-              v-if="preload"
-              chart-id="main-chart"
-              ref="lineChart"
-              :chartData="getChartData"
-              :theme="getProfile.theme"
-              :positive="getChartFilters.positive"
-              :negative="getChartFilters.negative"
-            ></line-chart>
-          </template>
-          <template v-slot:legend>
-            <ChartControl></ChartControl>
-          </template>
-          <template v-slot:button>
-            <Button :isRoute="true" :route="'mentions'">Результаты поиска</Button>
-          </template>
-        </Block>
-      </template>
-    </Section>
+    <DashboardChart @loaded="chartLoadingState" />
+    <DashboardMap @loaded="mapLoadingState" />
   </div>
 </template>
 
 <script>
-import Section from "../components/layout/Section";
-import ChartCounter from "../components/counters/ChartCounter";
-import ChartControl from "../components/charts/ChartControl";
-import Button from "../components/layout/Button";
-import Block from "../components/layout/Block";
-import { mapGetters, mapActions } from "vuex";
-import PeriodSwitcher from "../components/period-swicther"
-const LineChart = () => import(/* webpackChunkName: "LineChart" */"../components/charts/LineChart");
+const DashboardMap = () => import(/* webpackChunkName: "DashboardMap" */"../components/dashboard-blocks/dashboard-map");
+import DashboardChart from "../components/dashboard-blocks/dashboard-chart"
 
 export default {
   name: 'Dashboard',
   components: {
-    Section, ChartCounter, Block, LineChart, PeriodSwitcher, ChartControl, Button
+    DashboardChart, DashboardMap
   },
   data() {
     return {
-      preload: false
+      loading: {
+        chart: true,
+        map: true
+      }
     }
   },
-  methods: {
-    ...mapActions(['DATA_REQUEST', 'DATA_SWITCH'])
+  metaInfo: {
+    title: "Главная",
+    titleTemplate: "%s | ArtDock Client Panel"
   },
-  async mounted() {
-    if (!this.isChartDataLoaded) {
-      this.DATA_REQUEST().then(() => {
-        this.preload = true;
-      });
-    } else {
-      this.preload = true;
+  methods: {
+    chartLoadingState(loading) {
+      this.loading.chart = loading;
+    },
+    mapLoadingState(loading) {
+      this.loading.map = loading;
     }
   },
   computed: {
-    ...mapGetters(['getChartData', "getChartFilters", "isChartDataLoaded", "getProfile", "getPeriod" ]),
-    countersData: function() {
-      const data = this.getChartData;
-      return {
-        positive: data.positive.total,
-        negative: data.negative.total
+    isLoaded() {
+      let loaded = true;
+      for (let key in this.loading) {
+        if ( this.loading[key] ) {
+          loaded = false
+        }
       }
+      console.log(loaded);
+      return loaded
     }
   }
 }

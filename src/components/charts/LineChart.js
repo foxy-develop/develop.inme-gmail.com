@@ -118,7 +118,8 @@ export default {
                 ticks: {
                   fontColor: colors.dark.font,
                   beginAtZero: true,
-                  suggestedMin: 0
+                  suggestedMin: 0,
+                  maxTicksLimit: 8
                 }
               }
             ],
@@ -177,7 +178,8 @@ export default {
                 ticks: {
                   fontColor: colors.light.font,
                   beginAtZero: true,
-                  suggestedMin: 0
+                  suggestedMin: 0,
+                  maxTicksLimit: 8
                 }
               }
             ],

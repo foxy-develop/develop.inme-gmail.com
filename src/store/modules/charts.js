@@ -48,7 +48,7 @@ const actions = {
   },
   [DATA_ERROR]: ({commit, dispatch}) => {
     commit(DATA_ERROR);
-    this.$router.push('Error');
+    dispatch(AUTH_LOGOUT);
   }
 };
 

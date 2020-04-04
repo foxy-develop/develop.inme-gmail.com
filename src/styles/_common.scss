@@ -37,7 +37,7 @@ button {
     bottom: 0;
     z-index: 1;
     background: var(--gradient_bg);
-    transition: .3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    transition: .4s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     opacity: var(--gradient_show);
   }
 }

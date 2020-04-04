@@ -45,6 +45,10 @@ export default {
         '--text_inv': this.$const.COLOR[theme].TEXT_INV,
         '--checked_bg': this.$const.COLOR[theme].CHECKED_BG,
         '--checked_text': this.$const.COLOR[theme].CHECKED_TEXT,
+        '--map' :  this.$const.COLOR[theme].MAP,
+        '--map_fill' :  this.$const.COLOR[theme].MAP_FILL,
+        '--map_tips' :  this.$const.COLOR[theme].MAP_TIPS,
+        '--border': this.$const.COLOR[theme].BORDER,
       };
     }
   }
@@ -52,6 +56,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700|Rubik:400,500&display=swap&subset=cyrillic");
 @import "~flag-icon-css/sass/flag-icon.scss";
+@import "./styles/_animation.scss";
 @import "./styles/_common.scss";
 </style>

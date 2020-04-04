@@ -14,5 +14,9 @@
     components: {
       Section
     },
+    metaInfo: {
+      title: "Результаты поиска за сегодня",
+      titleTemplate: "%s | ArtDock Client Panel"
+    },
   }
 </script>

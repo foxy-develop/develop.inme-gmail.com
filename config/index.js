@@ -10,7 +10,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+    assetsPublicPath: process.env.NODE_ENV === 'production' ? './' : './',
     // assetsPublicPath: '/cpanel/',
     proxyTable: {},
 
@@ -57,7 +57,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * SourceMap

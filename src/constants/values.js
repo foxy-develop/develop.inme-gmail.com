@@ -21,7 +21,11 @@ export default Object.freeze({
       BADGE_BG: 'rgba(249, 251, 253, 0.05)',
       TEXT_INV: '#d6d8d8',
       CHECKED_BG: 'rgb(3, 199, 205)',
-      CHEKED_TEXT: '#fff'
+      CHEKED_TEXT: '#fff',
+      MAP: '#425758',
+      MAP_FILL: 'rgb(132, 149, 156)',
+      MAP_TIPS: '#fff',
+      BORDER: 'rgba(232, 232, 232, 0.1)'
     },
     LIGHT: {
       BG: '#f1f5f8',
@@ -39,7 +43,11 @@ export default Object.freeze({
       DROPDOWN: "#fff",
       BADGE_BG: "rgba(255,255,255, .5)",
       CHECKED_BG: '#fff',
-      CHECKED_TEXT: 'rgb(3, 199, 205)'
+      CHECKED_TEXT: 'rgb(3, 199, 205)',
+      MAP_FILL: 'rgb(173, 177, 181)',
+      MAP: '#fff',
+      MAP_TIPS: '#414d55',
+      BORDER: 'rgba(255, 255, 255, 0.7)'
     }
   }
 })

@@ -18,6 +18,10 @@
         enableLoader: false
       }
     },
+    metaInfo: {
+      title: "Вход",
+      titleTemplate: "%s | ArtDock Client Panel"
+    },
     components: {
       LoginForm
     },
@@ -30,7 +34,6 @@
       const response = await this.DATA_REQUEST()
 
       if (this.isChartDataLoaded()) {
-        console.log(this.getChartData())
         this.enableLoader = false;
         return next();
       }

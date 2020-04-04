@@ -1,7 +1,6 @@
 const path = require('path');
 const { GenerateSW } = require("workbox-webpack-plugin");
 
-
 module.exports = {
   lintOnSave: false,
   runtimeCompiler: true,
@@ -21,8 +20,7 @@ module.exports = {
     })]
   },
 
-  publicPath: '',
-
+  publicPath: '/',
   css: {
     loaderOptions: {
       sass: {
@@ -30,8 +28,6 @@ module.exports = {
           @import "@/styles/_variables.scss";
           @import "@/styles/_mixins.scss";
           @import "@/styles/_functions.scss";
-          @import "@/styles/_animation.scss";
-          @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700|Rubik:400,500&display=swap&subset=cyrillic");
         `
       }
     }

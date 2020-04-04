@@ -3,7 +3,7 @@
     <div class="block__header">
       <slot name="header"></slot>
     </div>
-    <div class="block__content">
+    <div :class="['block__content', { 'block__content--responsive' : responsive}]">
       <slot name="content"></slot>
     </div>
     <div class="block__footer">
@@ -19,7 +19,13 @@
 
 <script>
   export default {
-    name: "Block"
+    name: "Block",
+    props: {
+      responsive: {
+        type: Boolean,
+        default: false
+      }
+    }
   }
 </script>
 
@@ -28,12 +34,12 @@
   display: flex;
   min-height: 40rem;
   flex-shrink: 0;
-  background: var(--el_bg);
   border-radius: 0.8rem;
   flex-grow: 1;
   padding: 1rem;
   box-sizing: border-box;
-  transition: 0.3s ease-in-out;
+  transition: 0.15s ease-in-out;
+  background-color: var(--el_bg);
   flex-direction: column;
 
   &__header {
@@ -54,7 +60,13 @@
   &__content {
     margin-bottom: 4rem;
     height: 40rem;
+    &--responsive {
+      height: auto;
+      margin-bottom: 0;
+    }
   }
+
+
   &__footer {
     display: flex;
     flex-direction: row;
