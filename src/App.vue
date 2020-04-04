@@ -41,7 +41,10 @@ export default {
         '--gradient_bg': this.$const.COLOR.GRADIENT_BG,
         '--main': this.$const.COLOR.MAIN,
         '--dropdown': this.$const.COLOR[theme].DROPDOWN,
-        '--badge_bg': this.$const.COLOR[theme].BADGE_BG
+        '--badge_bg': this.$const.COLOR[theme].BADGE_BG,
+        '--text_inv': this.$const.COLOR[theme].TEXT_INV,
+        '--checked_bg': this.$const.COLOR[theme].CHECKED_BG,
+        '--checked_text': this.$const.COLOR[theme].CHECKED_TEXT,
       };
     }
   }

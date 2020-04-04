@@ -2,10 +2,11 @@
   <section class="section">
     <div class="section__title">
       <div class="section__side">
-        <button
+        <router-link
           v-if="navBtn"
           class="section__btn"
-          @click="this.$router.go(-1)"
+          :to="'/'"
+          exact
           title="Назад"
         >
           <svg
@@ -20,17 +21,17 @@
               d="M0.646446 3.64645C0.451183 3.84171 0.451183 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.7308 4.34027 7.7308 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976311 4.7308 0.659728 4.53553 0.464466C4.34027 0.269204 4.02369 0.269204 3.82843 0.464466L0.646446 3.64645ZM36 3.5L1 3.5V4.5L36 4.5V3.5Z"
             />
           </svg>
-        </button>
+        </router-link>
       </div>
       <div class="section__content">
         <Title v-text="title" />
       </div>
     </div>
     <div :class="['section__inner', { 'section__inner--reversed' : reversed}]">
-      <div class="section__side">
+      <div :class="['section__side', { 'section__side--start' : isStart }]">
         <slot name="side"></slot>
       </div>
-      <div class="section__content">
+      <div :class="['section__content', { 'section__content--no-padding': isScroll }] ">
         <slot name="content"></slot>
       </div>
     </div>
@@ -42,6 +43,16 @@ import Title from "./Title";
 export default {
   name: "Section",
   props: {
+    isStart: {
+      default: false,
+      required: false,
+      type: Boolean
+    },
+    isScroll: {
+      default: false,
+      required: false,
+      type: Boolean
+    },
     title: {
       type: String,
       required: true,
@@ -99,7 +110,7 @@ export default {
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-evenly;
     @include desktop {
       max-width: 23rem;
       flex-direction: column;
@@ -141,15 +152,16 @@ export default {
     justify-content: center;
     max-width: 120px;
     cursor: pointer;
+
+    &:hover {
+      .section__arrow {
+        fill: var(--positive);
+      }
+    }
   }
   &__arrow {
     transition: 0.3s ease-in-out;
     fill: var(--icon_color);
-  }
-  &:hover {
-    .back-btn__arrow {
-      fill: var(--main);
-    }
   }
 }
 </style>

@@ -9,7 +9,7 @@
   >
     <slot></slot>
   </router-link>
-  <button v-else class="btn" v-ripple="{ center: false }">
+  <button v-else class="btn" v-ripple="'rgba(255,255,255,0.3)'">
     <slot></slot>
   </button>
 </template>

@@ -1,5 +1,18 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="main__content">
+    <Section :title="'Результаты поиска за сегодня'" :navBtn="true">
+
+    </Section>
   </div>
 </template>
+
+<script>
+  import Section from "../components/layout/Section";
+
+  export default {
+    name: "Mentions",
+    components: {
+      Section
+    },
+  }
+</script>
