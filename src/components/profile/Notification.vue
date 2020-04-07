@@ -12,14 +12,14 @@
     <div class="notification__dropdown"
          v-show="isShow">
         <div class="notification__header">
-          Оповещения ({{ getTotalNotifications }})
+          Оповещения  <span v-if="!!parseInt(getNewNotifications)"> ({{ getNewNotifications }}) </span>
         </div>
-        <div class="notification__content">
+        <div class="notification__content" ref="content">
           <ul class="notification__list">
             <router-link
               v-if="isNotifications"
               tag="li"
-              v-for="notification in sortedNotification(getNotifications)"
+              v-for="notification in sortedNotification(getNotifications.slice(0,10))"
               :to="`/reports/${notification.notification_id}`"
               :class="['notification__item',  { 'notification__item--new' : !parseInt(notification.notification_is_read) }]"
               :key="notification.notification_id"
@@ -79,15 +79,16 @@
       return {
         isActive: false,
         hasNew: false,
+        notifications: []
       }
     },
     methods: {
       ...mapActions(['NOTIFICATIONS_REQUEST']),
-      toggleNotification: function () {
+      toggleNotification() {
         this.isActive = !this.isActive;
       },
-      onClickOutside (event) {
-          this.isActive = false;
+      onClickOutside(event) {
+        this.isActive = false;
       },
       sortedNotification(arr) {
         const newArr = arr
@@ -95,10 +96,10 @@
           .sort((a, b) =>
             parseInt(a.notification_is_read) === parseInt(b.notification_is_read)
               ? 0
-              :  parseInt(a.notification_is_read) > parseInt(b.notification_is_read)
+              : parseInt(a.notification_is_read) > parseInt(b.notification_is_read)
               ? 1
               : -1
-          );
+          )
 
         return newArr
       },
@@ -111,6 +112,11 @@
       isShow: function() {
           return this.isActive
        }
+    },
+    watch: {
+      isActive() {
+        this.$refs.content.scroll(0,0);
+      }
     }
   }
 </script>
@@ -262,6 +268,14 @@
     font-size: 1.6rem;
     font-weight: 500;
     box-sizing: border-box;
+    font-family: "Rubik", sans-serif;
+  }
+  &__header {
+    span {
+      margin-left: .5rem;
+      color: var(--positive);
+      font-weight: 500;
+    }
   }
   &__footer {
     color: #fff;

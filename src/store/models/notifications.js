@@ -19,6 +19,16 @@ const NotificationsModel = {
       notification_is_read: 0,
       notification_read_date: ''
     }
+  ],
+  notifications_header: [
+    {
+      notification_id: '',
+      notification_data: '',
+      title: '',
+      text: '',
+      notification_is_read: 0,
+      notification_read_date: ''
+    }
   ]
 }
 

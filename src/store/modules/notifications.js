@@ -22,7 +22,7 @@ const getters = {
 };
 
 const actions = {
-  [NOTIFICATIONS_REQUEST]: async ({ commit, dispatch }) => {
+  [NOTIFICATIONS_REQUEST]: async ( { commit, dispatch } ) => {
     commit(NOTIFICATIONS_REQUEST);
     const r = await NotificationsService.getNotifications(state.filter);
 
@@ -58,7 +58,12 @@ const mutations = {
     state.total = notifications.total;
     state.total_new = notifications.total_new;
     state.total_read = notifications.total_read;
-    state.notifications = notifications.notifications;
+    if ( !parseInt(state.offset) ) {
+      state.notifications = notifications.notifications;
+    } else {
+      state.notifications = [...state.notifications, notifications.notifications];
+    }
+
   },
   [NOTIFICATIONS_FILTER_CHANGE]: (state, options) => {
     state.status = false;
