@@ -332,12 +332,11 @@
   }
   &__date {
     right: 0;
-    top: 0;
+    top: .2125rem;
     opacity: .7;
     font-size: 1rem;
     font-weight: 400;
     position: absolute;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     svg {
@@ -350,7 +349,7 @@
   }
   &__status {
     width: 20%;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -441,10 +440,10 @@
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 4.5rem;
-    max-height: 4.5rem;
+    height: 3rem;
+    max-height: 3rem;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
 
 
   }

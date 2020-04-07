@@ -40,6 +40,7 @@
   background-color: var(--el_bg);
   flex-direction: column;
   flex-grow: 1;
+  max-height: 70rem;
   &__header {
     display: flex;
     margin-bottom: 2rem;

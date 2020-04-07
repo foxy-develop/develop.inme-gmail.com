@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import {mapActions } from 'vuex';
+  import { mapActions } from 'vuex';
   import router from "../../router";
 
   export default {
@@ -77,7 +77,7 @@
 
     will-change: transform;
     position: relative;
-    max-height: 73rem;
+    max-height: 70rem;
     overflow: hidden;
 
     @include tablet {
