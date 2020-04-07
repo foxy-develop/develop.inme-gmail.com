@@ -11,7 +11,7 @@ export default Object.freeze({
       GRADIENT_OPACITY: 1,
       FONT: 'rgb(255, 255, 255)',
       FONT_GREY: 'rgba(255, 255, 255, 0.5)',
-      EL_BG: 'rgba(255,255,255,0.05)',
+      EL_BG: 'rgba(255,255,255,0.1)',
       EL_BG_OFF: 'rgba(249, 251, 253, 0.05)',
       EL_BG_GREY: 'rgba(54, 66, 68, 0.3)',
       ICON: '#7b868c',
@@ -22,7 +22,7 @@ export default Object.freeze({
       TEXT_INV: '#d6d8d8',
       CHECKED_BG: 'rgb(3, 199, 205)',
       CHEKED_TEXT: '#fff',
-      MAP: '#425758',
+      MAP: '#4f5c5e',
       MAP_FILL: 'rgb(132, 149, 156)',
       MAP_TIPS: '#fff',
       BORDER: 'rgba(232, 232, 232, 0.1)'
@@ -48,6 +48,16 @@ export default Object.freeze({
       MAP: '#fff',
       MAP_TIPS: '#414d55',
       BORDER: 'rgba(255, 255, 255, 0.7)'
+    },
+    LIST: {
+      BG: {
+        DARK: "rgba(248,250,251,.1)",
+        LIGHT: "rgb(248, 250, 251)"
+      },
+      ACTIVE: {
+        DARK: "rgba(248,250,251,.1)",
+        LIGHT: "rgba(221,236,244,.4)"
+      }
     }
   }
 })

@@ -14,11 +14,18 @@ export default {
   margin: 0;
   font-family: "Rubik", sans-serif;
   font-weight: 500;
-  font-size: 2.8rem;
-  line-height: 4rem;
+  font-size: 2rem;
+  line-height: 1.25;
   width: 100%;
   align-items: center;
+
+  @include tablet {
+    font-size: 2.4rem;
+  }
+
   @include desktop {
+    font-size: 2.8rem;
+    line-height: 4rem;
     display: flex;
     text-align: left;
   }

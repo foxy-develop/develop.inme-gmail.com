@@ -49,6 +49,8 @@ export default {
         '--map_fill' :  this.$const.COLOR[theme].MAP_FILL,
         '--map_tips' :  this.$const.COLOR[theme].MAP_TIPS,
         '--border': this.$const.COLOR[theme].BORDER,
+        '--list-bg': this.$const.COLOR.LIST.BG[theme],
+        '--list-active': this.$const.COLOR.LIST.ACTIVE[theme],
       };
     }
   }

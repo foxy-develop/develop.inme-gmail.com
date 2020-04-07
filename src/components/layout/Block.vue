@@ -32,16 +32,14 @@
 <style scoped lang="scss">
 .block {
   display: flex;
-  min-height: 40rem;
   flex-shrink: 0;
   border-radius: 0.8rem;
-  flex-grow: 1;
   padding: 1rem;
   box-sizing: border-box;
   transition: 0.15s ease-in-out;
   background-color: var(--el_bg);
   flex-direction: column;
-
+  flex-grow: 1;
   &__header {
     display: flex;
     margin-bottom: 2rem;
@@ -58,6 +56,7 @@
   }
 
   &__content {
+    position: relative;
     margin-bottom: 4rem;
     height: 40rem;
     &--responsive {
@@ -81,7 +80,6 @@
     &--left {
       display: flex;
       align-items: center;
-      flex-grow: 1;
       margin-bottom: 4rem;
       @include tablet {
         margin-bottom: 0;
@@ -105,12 +103,6 @@
 
   @include tablet {
     padding: 2rem;
-    @media (orientation: portrait) {
-      min-height: 50vh;
-    }
-    @media (orientation: landscape) {
-      min-height: 50rem;
-    }
   }
   @include desktop {
     padding: 3rem;

@@ -1,5 +1,5 @@
 <template>
-  <Section :title="'География выдачи'" v-if="isMapPreload" reversed>
+  <Section :title="'География выдачи'" v-if="!loading" reversed>
     <template v-slot:side>
       <MapCounters :data="sortArray" />
     </template>
@@ -58,7 +58,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getMapPeriod', 'getMapData', 'isMapLoaded', 'isMapPreload']),
+    ...mapGetters(['getMapPeriod', 'getMapData']),
     sortArray() {
       const arr = this.getMapData;
       const newArr = arr
@@ -72,7 +72,7 @@ export default {
         );
 
       return newArr
-        .filter(el => el.value_negative != 0 || el.value != 0).slice(0, 9);
+        .filter(el => el.value_negative != 0 || el.value != 0).slice(0, 10);
 
     }
   },

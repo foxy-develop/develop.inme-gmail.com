@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { TokenService } from "../services/storage.service";
 import store from "../store";
+import {NOTIFICATIONS_REQUEST} from "../store/actions/notifications";
 
 Vue.use(Router);
 
@@ -76,6 +77,7 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
+  if( store.getters.isAuthenticated ) store.dispatch(NOTIFICATIONS_REQUEST);
   if (to.name !== 'Login' && !store.getters.isAuthenticated) next({ name: 'Login' });
   if (to.name === 'Login' && store.getters.isAuthenticated) next({ name: 'Dashboard' });
   else next()

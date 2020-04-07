@@ -946,14 +946,15 @@
   .chart-map {
     position: relative;
     width: 100%;
-    height: 30rem;
+    min-height: 30rem;
     max-height: 80vh;
     animation: revealMap;
     animation-fill-mode: forwards;
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
-    @media (min-width: 768px) {
+    @include tablet{
       height: 50rem;
+      max-height: 50rem;
     }
     path {
       fill: var(--map_fill);

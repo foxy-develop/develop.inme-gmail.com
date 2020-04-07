@@ -6,6 +6,7 @@
     <template v-slot:content>
       <Block>
         <template v-slot:header>
+
           <PeriodSwitcher
             :current="getPeriod"
             :name="'chart'"
@@ -13,6 +14,7 @@
           ></PeriodSwitcher>
         </template>
         <template v-slot:content>
+
           <line-chart
             v-if="!loading"
             chart-id="main-chart"
@@ -22,6 +24,7 @@
             :positive="getChartFilters.positive"
             :negative="getChartFilters.negative"
           ></line-chart>
+          <LoaderSmall fixed v-else/>
         </template>
         <template v-slot:legend>
           <ChartControl></ChartControl>
@@ -41,12 +44,13 @@ import ChartControl from "../charts/ChartControl";
 import Button from "../layout/Button";
 import Block from "../layout/Block";
 import { mapGetters, mapActions } from "vuex";
-import PeriodSwitcher from "../period-swicther"
+import PeriodSwitcher from "../period-swicther";
+import LoaderSmall from "../loaders/loader-small";
 const LineChart = () => import(/* webpackChunkName: "LineChart" */"../charts/LineChart");
 export default {
   name: "DashboardChart",
   components: {
-    Section, ChartCounter, Block, LineChart, PeriodSwitcher, ChartControl, Button
+    Section, ChartCounter, Block, LineChart, PeriodSwitcher, ChartControl, Button, LoaderSmall
   },
   data() {
     return {

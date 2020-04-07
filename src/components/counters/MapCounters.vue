@@ -68,7 +68,7 @@
     width: 100%;
 
     padding: 0 2rem;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     line-height: 1.25;
 
     color: var(--text);
@@ -95,7 +95,7 @@
 
     &__item {
       display: flex;
-      padding: 1.6rem 0;
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--border);
       align-items: center;
       width: 100%;
@@ -133,10 +133,10 @@
     }
     &__val {
       margin-left: auto;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--positive);
-      font-size: 17px;
-      line-height: 20px;
+      font-size: 1.6rem;
+      line-height: 2rem;
       &--negative {
         color: var(--negative);
       }

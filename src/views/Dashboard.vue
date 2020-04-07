@@ -7,7 +7,7 @@
 
 <script>
 const DashboardMap = () => import(/* webpackChunkName: "DashboardMap" */"../components/dashboard-blocks/dashboard-map");
-import DashboardChart from "../components/dashboard-blocks/dashboard-chart"
+import DashboardChart from "../components/dashboard-blocks/dashboard-chart";
 
 export default {
   name: 'Dashboard',
@@ -42,7 +42,6 @@ export default {
           loaded = false
         }
       }
-      console.log(loaded);
       return loaded
     }
   }

@@ -8,6 +8,7 @@ import {
 import UserService from "../../api/user.service";
 import { AUTH_LOGOUT } from "../actions/auth";
 import { ThemeService } from "../../services/storage.service";
+import router from "../../router";
 
 const state = {
   status: "",
@@ -32,6 +33,7 @@ const actions = {
     } else {
       commit(USER_ERROR);
       dispatch(AUTH_LOGOUT);
+      router.push("/login").then(r => r);
     }
     return;
   },

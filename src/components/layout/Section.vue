@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section :class="['section', { 'section--full' : full}]">
     <div class="section__title">
       <div class="section__side">
         <button
@@ -44,6 +44,11 @@ import Button from "./Button";
 export default {
   name: "Section",
   props: {
+    full: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     isStart: {
       default: false,
       required: false,
@@ -84,17 +89,20 @@ export default {
 .section {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   padding-bottom: 1.5rem;
+
+  &--full {
+    flex-grow: 1;
+  }
 
   @include desktop {
     padding-bottom: 2.5rem;
   }
+
   &__inner {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-
     &--reversed {
       flex-direction: column-reverse;
     }
@@ -108,9 +116,11 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+
     @include desktop {
       max-width: calc(100% - 23rem);
     }
+
   }
 
   &__side {
@@ -118,10 +128,15 @@ export default {
     flex-direction: row;
     width: 100%;
     justify-content: space-evenly;
+
+    &--start {
+      justify-content: flex-start;
+    }
     @include desktop {
       max-width: 23rem;
       flex-direction: column;
     }
+
   }
 
   &__title {
@@ -131,17 +146,30 @@ export default {
     height: 8rem;
 
     .section {
-      &__side {
-        max-width: 10rem;
 
+      &__side {
+        max-width: 8rem;
+        width: 100%;
+        flex-shrink: 0;
+        align-items: center;
         &:empty {
           display: none;
         }
         @include desktop {
+          max-width: 23rem;
+
           &:empty {
             display: flex;
           }
-          max-width: 23rem;
+
+        }
+      }
+      &__content {
+        max-width: calc(100% - 8rem);
+        text-align: left;
+
+        @include  desktop {
+          max-width: calc(100% - 23rem);
         }
       }
       &__content, &__side {
@@ -161,14 +189,18 @@ export default {
     cursor: pointer;
 
     &:hover {
+
       .section__arrow {
         fill: var(--positive);
       }
+
     }
   }
+
   &__arrow {
     transition: 0.3s ease-in-out;
     fill: var(--icon_color);
   }
+
 }
 </style>

@@ -3,7 +3,10 @@
   <div class="auth" v-else>
     <img class="auth__img" src="../assets/crystal.png" alt="crystal" />
     <img class="auth__logo" src="../assets/logo.svg" alt="ARTDOCK" />
-    <LoginForm></LoginForm>
+    <div class="auth__form">
+      <LoginForm/>
+    </div>
+
   </div>
 </template>
 
@@ -50,7 +53,6 @@
   flex-shrink: 0;
   width: 100%;
   height: 100%;
-  margin-top: -7rem;
 
   &__img {
     height: auto;
