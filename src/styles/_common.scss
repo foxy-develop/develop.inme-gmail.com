@@ -51,23 +51,26 @@ h1, h2, h3, h4, h5 {
 .fade-leave-active {
   transition-duration: 0.35s;
   transition-property: opacity;
-  transition-timing-function: ease-in;
+  transition-timing-function: ease-out;
 }
 
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
-  transition-timing-function: ease-out;
+  transition-timing-function: ease-in;
 }
 .fade-in-up-leave-to {
   opacity: 0;
   transform: translate3d(0, -5rem, 0);
-  transition: opacity .3s, transform .2s;
+  transition: opacity .3s, transform .3s;
+  transition-timing-function: ease-out;
+
 }
 
 .fade-in-up-enter {
   opacity: 0;
   transform: translate3d(0, -5rem, 0);
+  transition-timing-function: ease-in;
 }
 
 .fade-in-up-enter-to {

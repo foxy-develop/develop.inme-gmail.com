@@ -96,9 +96,20 @@ export default {
           responsive: true,
           aspectRatio: 1,
           tooltips: {
-            backgroundColor: '#f5f5f5',
-            titleFontColor: '#333',
-            bodyFontColor: '#666',
+            callbacks: {
+              labelTextColor: function(tooltipItem, chart) {
+                if (tooltipItem.datasetIndex != 1) {
+                  return '#0ed6dc';
+                } else {
+                  return '#f17105'
+                }
+              }
+            },
+            titleFontStyle: 'normal',
+            bodyFontStyle: 'bold',
+            backgroundColor: 'rgba(0,0,0, 0.4)',
+            titleFontColor: '#fff',
+            bodyFontColor: '#fff',
             bodySpacing: 4,
             xPadding: 12,
             mode: "nearest",
@@ -154,7 +165,18 @@ export default {
           responsive: true,
           aspectRatio: 1,
           tooltips: {
-            backgroundColor: '#f5f5f5',
+            callbacks: {
+              labelTextColor: function(tooltipItem, chart) {
+                if (tooltipItem.datasetIndex != 1) {
+                  return '#0ed6dc';
+                } else {
+                  return '#f17105'
+                }
+              }
+            },
+            titleFontStyle: 'normal',
+            bodyFontStyle: 'bold',
+            backgroundColor: '#f3f9fa',
             titleFontColor: '#333',
             bodyFontColor: '#666',
             bodySpacing: 4,

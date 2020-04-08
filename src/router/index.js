@@ -11,8 +11,11 @@ const Login = () => import(/* webpackChunkName: "Period" */"../views/Login");
 const Mentions = () => import(/* webpackChunkName: "Results" */"../views/Mentions");
 const Negative = () => import(/* webpackChunkName: "Negative" */"../views/Negative");
 const Reports = () => import(/* webpackChunkName: "Reports" */"../views/Reports");
+const ReportCurrent = () => import(/* webpackChunkName: "ReportCurrent" */"../components/reports/ReportCurrent");
+const ReportsList = () => import(/* webpackChunkName: "ReportsList" */"../components/reports/ReportsList");
+
 const Current = () => import(/* webpackChunkName: "Period" */"../views/Current");
-const Report = () => import(/* webpackChunkName: "Report" */"../views/Report");
+
 const Error = () => import(/* webpackChunkName: "Error" */"../views/Error");
 
 
@@ -54,12 +57,17 @@ const routes = [
   {
     path: "/reports",
     name: "Reports",
-    component: Reports
-  },
-  {
-    path: "/reports/:id",
-    name: "Report",
-    component: Report
+    component: Reports,
+    children: [
+      {
+        path: '',
+        component: ReportsList
+      },
+      {
+        path: ':id',
+        component: ReportCurrent
+      }
+    ]
   },
   {
     path: "*",

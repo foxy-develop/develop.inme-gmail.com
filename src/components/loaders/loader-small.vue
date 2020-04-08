@@ -1,5 +1,5 @@
 <template>
-  <div :class="['loader', { 'loader--absolute' : fixed }]">
+  <div :class="['loader', { 'loader--absolute' : fixed }, { 'loader--small' : button}]">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@
         />
       </path>
     </svg>
-    <span class="loader__text">Загрузка</span>
+    <span class="loader__text" v-if="!button">Загрузка</span>
   </div>
 </template>
 
@@ -47,6 +47,11 @@
     font-family: "Rubik", sans-serif;
     font-weight: 500;
     letter-spacing: 0.1px;
+
+    svg path {
+      fill: var(--positive);
+    }
+
     &--absolute {
       position: absolute;
       left: 0;
@@ -54,15 +59,22 @@
       height: 100%;
       width: 100%;
     }
-  }
-  .loader__text {
-    margin-top: 1rem;
-    transition: 0.3s ease-in-out;
-    color: var(--text_inv);
-  }
-  .loader {
-    svg path {
-      fill: var(--positive);
+    &--small {
+      padding: 0;
+      margin: 0;
+      svg {
+        height: 25px;
+        width: 25px;
+
+        path {
+          fill: rgba(255, 255, 255, .5);
+        }
+      }
+    }
+    &__text {
+      margin-top: 1rem;
+      transition: 0.3s ease-in-out;
+      color: var(--text_inv);
     }
   }
 </style>
@@ -72,6 +84,10 @@
     name: "LoaderSmall",
     props: {
       fixed: {
+        type: Boolean,
+        default: false
+      },
+      button: {
         type: Boolean,
         default: false
       }

@@ -953,8 +953,8 @@
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
     @include tablet{
-      height: 50rem;
-      max-height: 50rem;
+      height: 48rem;
+      max-height: 48rem;
     }
     path {
       fill: var(--map_fill);

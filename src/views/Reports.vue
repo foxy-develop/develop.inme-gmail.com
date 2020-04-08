@@ -1,7 +1,9 @@
 <template>
   <div class="main__content">
     <Section :title="'Отчеты о работе'" :navBtn="true">
-
+      <template v-slot:content>
+        <router-view></router-view>
+      </template>
     </Section>
   </div>
 </template>

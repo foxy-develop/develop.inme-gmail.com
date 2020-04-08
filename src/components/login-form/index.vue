@@ -26,8 +26,12 @@
           />
         </div>
       </label>
-      <button class="login-form__btn" type="submit" :disabled="loading">
-        {{ loading ? "Подождите" : isPhoneApproved ? 'Подтвердить': 'Отправить' }}
+      <button :class="['login-form__btn', { 'login-form__btn--loading' : loading }]" type="submit" :disabled="loading">
+        <transition name="fade-in-up" mode="out-in">
+          <span v-if="!loading">{{ isPhoneApproved ? 'Подтвердить': 'Отправить' }}</span>
+          <LoaderSmall button v-else />
+        </transition>
+
       </button>
     </form>
     <div class="login-form__notif">{{ getErrorMessage }}</div>
@@ -38,6 +42,7 @@
   import {IMaskComponent} from "vue-imask";
   import {mapActions, mapGetters} from "vuex";
   import allCountries from "../../constants/country.codes";
+  import LoaderSmall from "../loaders/loader-small";
 
   export default {
     name: "LoginForm",
@@ -51,7 +56,8 @@
       }
     },
     components: {
-      "imask-input": IMaskComponent
+      "imask-input": IMaskComponent,
+      LoaderSmall
     },
     methods: {
       ...mapActions(["AUTH_REQUEST", "AUTH_LOGIN"]),
