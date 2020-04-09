@@ -1,10 +1,10 @@
 <template>
   <div class="auth">
-    <LoaderSmall fixed :show="enableLoader" />
     <img class="auth__img" src="../assets/crystal.png" alt="crystal" />
     <img class="auth__logo" src="../assets/logo.svg" alt="ARTDOCK" />
-    <div class="auth__form" v-show="!enableLoader">
-      <LoginForm/>
+    <div class="auth__form">
+      <LoaderSmall :show="enableLoader" />
+      <LoginForm v-show="!enableLoader"/>
     </div>
   </div>
 </template>
