@@ -105,7 +105,7 @@
               title_short: el.id,
               value: el.value_negative
             }
-          })
+          }).filter( el => Number(el.value) )
         }
       },
       computed: {
@@ -143,13 +143,15 @@
       display: flex;
       width: 100%;
       flex-direction: row;
-      height: 4rem;
+      height: 5rem;
       border-radius: .8rem;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       position: relative;
+      padding-bottom: 1rem;
 
       @include tablet {
+        padding-bottom: 0;
         height: unset;
         flex-direction: column;
         max-width: 32.6rem;

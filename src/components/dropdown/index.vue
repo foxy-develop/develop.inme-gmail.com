@@ -119,7 +119,8 @@
             />
           </svg>
         </li>
-        <div class="dropdown-menu" v-if="showMenu">
+        <transition name="appear">
+          <div class="dropdown-menu" v-if="showMenu">
           <div class="dropdown__search" v-if="type === 'keywords' || type === 'country'">
             <svg
               width="14"
@@ -167,6 +168,7 @@
           </transition-group>
           <div class="empty-result">По данному запросу ничего не найдено...</div>
         </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -257,20 +259,18 @@
 </script>
 
 <style scoped lang="scss">
-  @keyframes showDrop {
-    from {
-      opacity: 0;
-      max-height: 0;
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-    to {
-      opacity: 1;
-      max-height: 40rem;
-      padding-bottom: .5rem;
-      padding-top: .5rem;
-    }
+  .appear-leave-active {
+    transition: .2s ease-out;
   }
+  .appear-enter-active {
+    transition: .3s ease-in;
+  }
+
+  .appear-enter, .appear-leave-to {
+    opacity: 0;
+    transform: translate(0, 1.5rem);
+  }
+
   @keyframes revealItem {
     from {
       opacity: 0;
@@ -421,10 +421,6 @@
     max-height: 40rem;
     overflow-y: auto;
     transition: 0.3s ease-in-out;
-    animation: showDrop;
-    animation-duration: 0.3s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
     @include tablet {
       left: 0;
       max-width: 100%;
@@ -495,7 +491,6 @@
     background: var(--el_bg_grey);
     color: var(--positive);
   }
-
   .dropdown-list > li {
     transition: 0.3s ease-in-out;
     overflow: hidden;
@@ -528,13 +523,20 @@
       height: 4rem;
       width: 8rem;
       border-radius: .8rem;
-      margin-top: 1.5rem;
+      background: var(--el_bg);
+      border-radius: .8rem;
+      box-shadow: 0px 5px 13px rgba(20, 78, 110, 0.1);
+      margin: 0 .5rem;
       &__icon--flag {
         font-size: 2rem;
         width: 3rem;
       }
       @include tablet {
+        margin-top: 1.5rem;
         width: 100%;
+      }
+      @include desktop {
+        margin-top: 0;
       }
     }
   }

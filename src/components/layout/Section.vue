@@ -147,8 +147,9 @@ export default {
     &-inner {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
       width: 100%;
+      align-items: center;
 
       @include desktop {
         height: 100%;
@@ -163,7 +164,7 @@ export default {
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          margin-bottom: 3rem;
+          margin-bottom: .5rem;
           @include tablet {
             flex-direction: row;
             margin-bottom: 0;
