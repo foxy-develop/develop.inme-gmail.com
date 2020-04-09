@@ -46,9 +46,8 @@ const actions = {
   [DATA_FILTER]: ({ commit }, { type }) => {
     commit(DATA_FILTER, type);
   },
-  [DATA_ERROR]: ({commit, dispatch}) => {
+  [DATA_ERROR]: ({commit}) => {
     commit(DATA_ERROR);
-    dispatch(AUTH_LOGOUT);
   }
 };
 

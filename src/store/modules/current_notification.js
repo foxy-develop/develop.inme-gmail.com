@@ -8,6 +8,7 @@ import {
 import NotificationsService from "../../api/notifications.service";
 import CurrentNotificationModel from "../models/current_notification";
 import {AUTH_LOGOUT} from "../actions/auth";
+import {MENTIONS_ERROR} from "../actions/mentions";
 
 const state = CurrentNotificationModel();
 

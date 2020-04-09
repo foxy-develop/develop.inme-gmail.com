@@ -28,7 +28,7 @@ const actions = {
   [USER_REQUEST]: async ({ commit, dispatch }) => {
     commit(USER_REQUEST);
     const r = await UserService.profile();
-    if ( r.status ) {
+    if ( r && r.status ) {
       commit(USER_SUCCESS, r.profile);
     } else {
       commit(USER_ERROR);

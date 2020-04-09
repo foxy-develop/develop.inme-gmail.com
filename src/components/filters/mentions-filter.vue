@@ -117,6 +117,7 @@ export default {
     border-radius: 8px;
     transition: 0.3s ease-in-out;
     z-index: 150;
+    height: 105px;
 
     &__animate {
 

@@ -3,10 +3,10 @@ import { ThemeService } from "../services/storage.service";
 import { API_USER } from "./api.endpoints";
 
 class UserError extends Error {
-  constructor(errorCode, message) {
-    super( message );
+  constructor(errorCode, status) {
+    super( status );
     this.name = this.constructor.name;
-    this.message = message;
+    this.status = status;
     this.errorCode = errorCode;
   }
 }
@@ -20,7 +20,7 @@ const UserServive = {
         return response.data;
       }
     } catch ( error ) {
-      throw new UserError(error.response.status, error.response.data.detail)
+      throw new UserError(error, false)
     }
   },
   theme: async function() {
@@ -29,10 +29,10 @@ const UserServive = {
     try {
       const response = await ApiService.post(API_USER.SWITCH_THEME, {theme});
       if (response && response.data.status) {
-        return {status: response.data.status, theme: theme};
+        throw new UserError(error.response.status, error.response.data.detail)
       }
     } catch ( error ) {
-      throw new UserError(error.response.status, error.response.data.detail)
+      throw new UserError(error, false)
     }
   }
 }

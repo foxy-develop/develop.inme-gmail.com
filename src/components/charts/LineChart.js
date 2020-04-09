@@ -14,7 +14,10 @@ const colors = {
   }
 };
 
-const setPostRequest = (type, date) => router.push("/mentions/" + type + "/" + date);
+const setPostRequest = (type, date) => {
+  router.push("/mentions/" + type + "/" + date);
+  console.log(type);
+}
 const customLabels = {
   labels: {
     value: 'o'
@@ -246,10 +249,12 @@ export default {
       this.labels = this.prepareData(data.labels);
 
       this.data.labels = this.prepareData(data.labels);
-      this.data.datasets[0].datalabels.listeners.click = context =>
-        setPostRequest("positive", data.labels[context.dataIndex]);
-      this.data.datasets[1].datalabels.listeners.click = context =>
-        setPostRequest("negative", data.labels[context.dataIndex]);
+
+      this.data.datasets[1].datalabels.listeners.click = context => {
+        const type = context.dataset.label[0] === "Негативные" ? 'negative' : 'positive'
+        setPostRequest(type, data.labels[context.dataIndex]);
+      }
+
 
       this.data.datasets[0].datalabels.listeners.enter = () => { this.$refs.canvas.style.cursor = "pointer" };
       this.data.datasets[0].datalabels.listeners.leave = () => { this.$refs.canvas.style.cursor = "default"};

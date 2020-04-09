@@ -16,7 +16,7 @@
         <img :src="item.favicon" :alt="item.domain" />
       </div>
 
-      <div class="list-item__title">{{ item.title }}</div>
+      <div class="list-item__title">{{ item.title || item.domain  }}</div>
 
       <div class="list-item__rating" v-if="item.position">
         <strong :class="item.content_type">{{ item.position }}</strong>
@@ -46,9 +46,9 @@
     </div>
     <div :class="['list-item__body more', { 'is-active': isActive }]">
       <div class="more__title more__item">
-        <strong>Название: </strong> <span> {{ item.title }} </span>
+        <strong>Название: </strong> <span> {{ item.title || item.domain}} </span>
       </div>
-      <div class="more__desc more__item">
+      <div class="more__desc more__item" v-if="item.description">
         <strong>Описание: </strong>
         <p class="more__text">
           {{ item.description }}

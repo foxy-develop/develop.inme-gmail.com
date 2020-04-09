@@ -37,6 +37,7 @@ const actions = {
   [AUTH_LOGIN]: async ({ commit, dispatch }, { password, phone }) => {
     commit(AUTH_REQUEST);
     const r = await AuthService.login(password, phone);
+
     if (r.status) {
       commit(AUTH_SUCCESS, r.token);
       router.push("/").then(() => dispatch(USER_REQUEST));

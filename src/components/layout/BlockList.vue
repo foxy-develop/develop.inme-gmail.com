@@ -3,6 +3,7 @@
       <div class="block-list__content">
           <slot></slot>
       </div>
+
     </div>
 </template>
 
@@ -29,13 +30,14 @@ export default {
     background-color: var(--el_bg);
     flex-direction: column;
     flex-grow: 1;
+    position: relative;
 
     &__content {
       display: flex;
       flex-grow: 1;
       overflow-x: hidden;
-      overflow-y: auto;
       min-height: 32rem;
+
       &::-webkit-scrollbar {
         background-color: rgba(255, 255, 255, 0);
         width: 5px;
@@ -56,16 +58,17 @@ export default {
       }
 
       @include tablet {
-        @media (orientation: portrait) {
-          max-height: calc(100vh - 46.5rem);
-        }
-
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 2rem;
+        bottom: 2rem;
+        overflow-y: auto;
       }
-
       @include desktop {
-        max-height: calc(100vh - 39.5rem);
+        top: 3rem;
+        bottom: 3rem;
       }
-
     }
 
     @include tablet {

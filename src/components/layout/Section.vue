@@ -149,6 +149,10 @@ export default {
 
     &--start {
       justify-content: flex-start;
+      .section__side-inner {
+        justify-content: flex-start;
+      }
+
     }
     @include desktop {
       max-width: 23rem;

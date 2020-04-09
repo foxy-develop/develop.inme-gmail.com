@@ -56,8 +56,10 @@ const actions = {
 
   [MENTIONS_CHANGE_TYPE]: ({ commit }, { options }) => {
     commit(MENTIONS_CHANGE_TYPE, options);
+  },
+  [MENTIONS_ERROR]: ({commit }) => {
+      commit(MENTIONS_ERROR);
   }
-
 };
 
 const mutations = {

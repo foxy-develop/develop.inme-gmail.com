@@ -8,13 +8,14 @@ import notifications from "./modules/notifications";
 import current_notification from "./modules/current_notification";
 import map from "./modules/charts-map";
 import AxiosPlugin from "vue-axios-cors";
+import current_mentions from "./modules/current_mentions"
 
 Vue.use(Vuex);
 Vue.use(AxiosPlugin);
 
 export default new Vuex.Store({
   modules: {
-    auth, user, charts, map, mentions, notifications, current_notification
+    auth, user, charts, map, mentions, notifications, current_notification,current_mentions
   },
   strict: true
 });

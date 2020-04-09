@@ -42,9 +42,8 @@ const actions = {
     dispatch(NOTIFICATIONS_REQUEST);
 
   },
-  [NOTIFICATIONS_ERROR]: ({ commit, dispatch} ) => {
+  [NOTIFICATIONS_ERROR]: ({ commit} ) => {
     commit(NOTIFICATIONS_ERROR);
-    dispatch(AUTH_LOGOUT);
   }
 
 };
