@@ -1,5 +1,6 @@
 import ApiService from "../services/api.service";
 import { API_DATA } from "./api.endpoints";
+import {DataError} from "./data.service";
 
 class MentionsError extends Error {
   constructor(errorCode, message) {
@@ -31,6 +32,16 @@ const MentionsServive = {
       throw new MentionsError(error.response.status, error.response.data.detail);
     }
   },
+  getNegativeData: async ({region_id, period}) => {
+    try {
+      const response = await ApiService.post(API_DATA.NEGATIVE_MENTIONS, { region_id: region_id, period: period });
+      if (response && response.status && response.status == 200) {
+        return { status: response.status, data: response.data };
+      }
+    } catch (error) {
+      throw new DataError(error.response.status, error.response.data.detail);
+    }
+  }
 };
 
 

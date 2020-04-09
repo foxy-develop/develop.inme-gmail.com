@@ -31,9 +31,14 @@ export default {
     font-weight: 500;
     color: var(--text);
     transition: 0.3s ease-in-out;
-    margin-bottom: 3rem;
+    margin: 3rem 0;
     width: 100%;
-
+    @include tablet {
+      max-width: 50%;
+    }
+    @include desktop {
+      width: 100%;
+    }
     &__num {
       font-size: 7rem;
       line-height: 1;

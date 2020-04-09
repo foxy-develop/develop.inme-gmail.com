@@ -764,7 +764,7 @@
       routeToMentions: function(event) {
         const tooltip = document.querySelector("." + this.tooltip);
         tooltip.classList.remove(this.tooltip + "--active");
-        //this.NEGATIVE_FILTER({ region_id: event.target.dataset.id });
+        this.NEGATIVE_FILTER({ region_id: event.target.dataset.id, period: this.getMapPeriod });
         router.push("/negative/");
       },
       hoverTooltip: function(element) {

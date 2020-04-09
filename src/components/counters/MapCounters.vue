@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import router from "../../router";
 
   export default {
@@ -45,11 +45,14 @@
       data: [Array]
     },
     methods: {
-      // ...mapActions(["NEGATIVE_FILTER"]),
+      ...mapActions(["NEGATIVE_FILTER"]),
       routeTo(id) {
-        // this.NEGATIVE_FILTER({ region_id: id });
+        this.NEGATIVE_FILTER({ region_id: id, period: this.getMapPeriod });
         router.push("/negative/");
       }
+    },
+    computed: {
+      ...mapGetters(['getMapPeriod'])
     }
   }
 </script>

@@ -47,9 +47,12 @@ export default {
 <style scoped lang="scss">
 .periods {
   display: flex;
-  max-width: 32.6rem;
+  max-width: 28rem;
   width: 100%;
 
+  @include tablet {
+    max-width: 32.6rem;
+  }
   &__item {
     display: flex;
     position: relative;

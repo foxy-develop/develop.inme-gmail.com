@@ -31,12 +31,12 @@ export default {
     flex-direction: column;
     flex-grow: 1;
     position: relative;
-
+    min-height: 32rem;
     &__content {
       display: flex;
       flex-grow: 1;
       overflow-x: hidden;
-      min-height: 32rem;
+
 
       &::-webkit-scrollbar {
         background-color: rgba(255, 255, 255, 0);

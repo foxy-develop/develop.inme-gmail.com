@@ -18,7 +18,8 @@ export default {
   line-height: 1.25;
   width: 100%;
   align-items: center;
-
+  display: flex;
+  flex-shrink: 1;
   @include tablet {
     font-size: 2.4rem;
   }

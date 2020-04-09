@@ -37,9 +37,9 @@ const actions = {
     }
     return;
   },
-  [USER_SWITCH_THEME]: async ({ commit }) => {
+  [USER_SWITCH_THEME]: async ({ commit, dispatch }) => {
     const r = await UserService.theme();
-    r && commit(USER_SWITCH_THEME, r.theme);
+    r ? commit(USER_SWITCH_THEME, r.theme) : dispatch(AUTH_LOGOUT);
     return;
   }
 };

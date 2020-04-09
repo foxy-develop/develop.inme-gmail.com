@@ -24,14 +24,17 @@
       </div>
       <div class="section__content">
         <Title v-text="title" />
+        <div class="section__control">
+          <slot name="control"></slot>
+        </div>
       </div>
     </div>
     <div :class="['section__inner', { 'section__inner--reversed' : reversed}]">
-        <div :class="['section__side', { 'section__side--start' : isStart }]">
+        <div :class="['section__side', { 'section__side--start' : isStart }, {}]">
           <transition
             appear
             name="reveal-animate--top">
-            <div class="section__side-inner" v-if="!loading">
+            <div :class="['section__side-inner', { 'section__side-inner--filters' : isSideFilters }]" v-if="!loading">
               <slot name="side"></slot>
             </div>
           </transition>
@@ -64,6 +67,11 @@ export default {
       default: false,
       required: false,
       type: Boolean
+    },
+    isSideFilters: {
+      type: Boolean,
+      default: false,
+      required: false
     },
     loading: false,
     title: {
@@ -123,7 +131,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-
+    z-index: 2;
     @include desktop {
       max-width: calc(100% - 23rem);
     }
@@ -135,12 +143,13 @@ export default {
     flex-direction: row;
     width: 100%;
     justify-content: space-evenly;
-
+    z-index: 5;
     &-inner {
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
       width: 100%;
+
       @include desktop {
         height: 100%;
         flex-direction: column;
@@ -150,7 +159,25 @@ export default {
     &--start {
       justify-content: flex-start;
       .section__side-inner {
-        justify-content: flex-start;
+        &--filters {
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          margin-bottom: 3rem;
+          @include tablet {
+            flex-direction: row;
+            margin-bottom: 0;
+            justify-content: space-between;
+          }
+          @include desktop {
+            flex-direction: column;
+            justify-content: flex-start;
+          }
+        }
+        @include desktop {
+          justify-content: flex-start;
+          margin-bottom: 0;
+        }
       }
 
     }
@@ -160,7 +187,11 @@ export default {
     }
 
   }
-
+  &__control {
+    display: flex;
+    width: 100%;
+    max-width: 32.6rem;
+  }
   &__title {
     display: flex;
     flex-direction: row;
@@ -174,6 +205,7 @@ export default {
         width: 100%;
         flex-shrink: 0;
         align-items: center;
+        justify-content: center;
         &:empty {
           display: none;
         }
@@ -189,15 +221,18 @@ export default {
       &__content {
         max-width: calc(100% - 8rem);
         text-align: left;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include tablet {
+          flex-direction: row;
+          justify-content: space-between;
+        }
         @include  desktop {
           max-width: calc(100% - 23rem);
         }
       }
-      &__content, &__side {
-        justify-content: center;
-      }
-
     }
   }
   &__btn {

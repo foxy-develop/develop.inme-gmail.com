@@ -2,11 +2,12 @@ import ApiService from "../services/api.service";
 import { ThemeService } from "../services/storage.service";
 import { API_USER } from "./api.endpoints";
 
+
 class UserError extends Error {
-  constructor(errorCode, status) {
-    super( status );
+  constructor(errorCode, message) {
+    super( message );
     this.name = this.constructor.name;
-    this.status = status;
+    this.message = message;
     this.errorCode = errorCode;
   }
 }
@@ -20,19 +21,22 @@ const UserServive = {
         return response.data;
       }
     } catch ( error ) {
-      throw new UserError(error, false)
+      throw new UserError(
+        error.response.status,
+        error.response.data.detail
+      );
     }
   },
   theme: async function() {
     const theme = ThemeService.get() === "dark" ? "light" : "dark";
     ThemeService.save(theme);
     try {
-      const response = await ApiService.post(API_USER.SWITCH_THEME, {theme});
-      if (response && response.data.status) {
-        throw new UserError(error.response.status, error.response.data.detail)
+      const response = await ApiService.post(API_USER.SWITCH_THEME, { theme });
+      if (response && response.status) {
+        return { status: response.status, theme: theme };
       }
-    } catch ( error ) {
-      throw new UserError(error, false)
+    } catch (error) {
+      throw new UserError(error.response.status, error.response.data.detail);
     }
   }
 }

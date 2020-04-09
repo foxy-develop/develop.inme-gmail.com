@@ -15,8 +15,17 @@ const state = mapDataModel();
 const getters = {
   getMapPeriod: state => state.period,
   getMapData: state => state.data[state.period],
+  getCountryData: state => period => state.data(period),
   isMapLoaded: state => state.datasets === 3,
-  isMapPreload: state => state.datasets > 0,
+  getSelectedCountry: state => id => state.data[state.period].filter(el => Number(el.region_id) === Number(id)).map(el => {
+    return {
+      id: el.region_id,
+      selected: true,
+      title: el.name,
+      title_short: el.id,
+      value: el.value_negative
+    }
+  })[0]
 };
 
 const actions = {

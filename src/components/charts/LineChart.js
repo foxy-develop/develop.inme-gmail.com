@@ -120,7 +120,6 @@ export default {
             position: "nearest",
             displayColors: false
           },
-
           legend: { display: false },
           scales: {
             yAxes: [

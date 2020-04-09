@@ -46,8 +46,16 @@
       ]"
           ></span>
 
-          <div class="dropdown-text">
+          <div :class="['dropdown-text', {'negative-text' : num }]">
             <span class="dropdown-title-text">{{ selectedOption.title }}</span>
+            <number
+              v-if="num"
+              class="value_count"
+              :from="0"
+              :to="count"
+              :duration="1"
+              easing="Power3.easeIn"
+            />
           </div>
           <svg :class="['filter__chevron', showMenu && 'rotate']"
                width="14"
@@ -153,6 +161,7 @@
             ]"
                 ></span>
                 <span class="title">{{ option.title }}</span>
+                <span class="value_count" v-if="num"> {{ option.value }} </span>
               </a>
             </li>
           </transition-group>
@@ -178,9 +187,15 @@
         placeholderText: "Пожалуйста сделайте выбор"
       };
     },
+
     props: {
       options: {
         type: [Array, Object]
+      },
+      count: {
+        type: Number,
+        required: false,
+        default: 0
       },
       type: String,
       selected: {},
@@ -188,6 +203,10 @@
       closeOnOutsideClick: {
         type: [Boolean],
         default: true
+      },
+      num: {
+        type: [Boolean],
+        default: false
       }
     },
 
@@ -291,6 +310,18 @@
       display: block;
       margin-right: auto;
     }
+  }
+  .negative-text {
+    display: flex;
+    max-width: 90%;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .value_count {
+    font-weight: 500;
+    color: var(--negative);
+    margin-left: auto;
   }
   .dropdown-toggle {
     width: 100%;
@@ -491,6 +522,21 @@
 
   li {
     list-style: none;
+  }
+  .negative__filter {
+    .filter {
+      height: 4rem;
+      width: 8rem;
+      border-radius: .8rem;
+      margin-top: 1.5rem;
+      &__icon--flag {
+        font-size: 2rem;
+        width: 3rem;
+      }
+      @include tablet {
+        width: 100%;
+      }
+    }
   }
   .filter {
     display: flex;
