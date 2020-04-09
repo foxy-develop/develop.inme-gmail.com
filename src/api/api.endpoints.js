@@ -18,7 +18,13 @@ const API_DATA = {
 
 const API_NOTIFICATIONS = {
   LIST: "notifications/list",
-  // type: "POST" params: "limit (default: 100), offset (default: 0), date_from, date_to (YYYY-MM-DD), type: report, message"
+  // type: "POST" params: "
+  // limit (default: 100),
+  // offset (default: 0),
+  // date_from, date_to: (YYYY-MM-DD),
+  // type: (report, message),
+  // orderby: (date_created, type, title, read),
+  // sortorder (DESC, ASC) - default(date_created DESC)"
   GET_CURRENT: "notifications/get?notification_id=", //type "GET", params: "notification_id"
   READ: "notifications/mark_as_read", //type "POST", params: "notification_id"
 }
