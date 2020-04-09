@@ -2,10 +2,10 @@
   <div class="auth">
     <img class="auth__img" src="../assets/crystal.png" alt="crystal" />
     <img class="auth__logo" src="../assets/logo.svg" alt="ARTDOCK" />
-    <div class="auth__form">
-      <LoaderSmall :show="enableLoader" />
-      <LoginForm v-show="!enableLoader"/>
-    </div>
+    <transition-group appear name="reveal-animate--bottom" class="auth__form" mode="out-in">
+      <LoaderSmall :show="enableLoader" key="form"/>
+      <LoginForm v-show="!enableLoader" key="loasder"/>
+    </transition-group>
   </div>
 </template>
 
