@@ -142,6 +142,7 @@ export default {
       justify-content: space-evenly;
       width: 100%;
       @include desktop {
+        height: 100%;
         flex-direction: column;
       }
     }
