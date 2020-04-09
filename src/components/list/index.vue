@@ -1,10 +1,10 @@
 <template>
+
   <transition-group
     class="mentions"
     tag="div"
     name="list"
     v-if="load"
-    v-show="load"
   >
     <ListItem
       v-for="(mention, index) in mentions"
@@ -15,7 +15,7 @@
       :time="time"
     ></ListItem>
   </transition-group>
-  <LoaderSmall v-else />
+  <LoaderSmall v-else :show="!load"/>
 </template>
 
 <script>

@@ -105,8 +105,8 @@
     &__text {
       margin-top: 1rem;
       transition: 0.3s ease-in-out;
-      color: var(--text_inv);
-      opacity: 0.5;
+      color: var(--text);
+      opacity: 0.7;
       font-weight: 400;
       &:after {
         content: '.';

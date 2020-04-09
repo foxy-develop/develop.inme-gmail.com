@@ -7,7 +7,7 @@
       <template v-slot:content>
         <MentionsFilter v-if="filterLoaded"/>
         <transition appear name="reveal__block" >
-          <BlockList :load="filterLoaded && isDataLoaded">
+          <BlockList :load="filterLoaded">
             <List :load="filterLoaded && isDataLoaded" :dataList="getMentions" />
           </BlockList>
         </transition>
