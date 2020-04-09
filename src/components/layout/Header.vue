@@ -1,13 +1,13 @@
 <template>
-    <header class="header">
-      <router-link :tag="'div'" class="header__logo" exact :to="'/'">
-        <Logo/>
-      </router-link>
-      <div class="header__profile">
-        <ThemeSwitcher/>
-        <Profile/>
-      </div>
-    </header>
+  <header class="header">
+    <router-link :tag="'div'" class="header__logo" exact :to="'/'">
+      <Logo/>
+    </router-link>
+    <div class="header__profile">
+      <ThemeSwitcher/>
+      <Profile/>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -47,8 +47,8 @@
 
   &__profile, &__logo {
     animation: revealHeader;
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
   }
   &__profile {
     display: flex;

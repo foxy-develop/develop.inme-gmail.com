@@ -1,7 +1,9 @@
 <template>
   <div id="app" :style="cssColorsVars">
     <main :class="[ 'main', { 'main--bg' : !isProfileLoaded }]" >
-      <Header v-if="this.$route.path != '/login' && isAuthenticated" />
+      <transition name="reveal-animate--bottom">
+        <Header v-if="this.$route.path != '/login' && isAuthenticated" />
+      </transition>
         <transition name="fade-in-up" mode="out-in">
           <router-view />
         </transition>
@@ -62,4 +64,18 @@ export default {
 @import "~flag-icon-css/sass/flag-icon.scss";
 @import "./styles/_animation.scss";
 @import "./styles/_common.scss";
+
+
+.appear-leave-active {
+  transition: .2s ease-out;
+}
+.appear-enter-active {
+  transition: .3s ease-in;
+}
+
+.appear-enter, .appear-leave-to {
+  opacity: 0;
+  transform: translate(0, -3.5rem);
+}
+
 </style>

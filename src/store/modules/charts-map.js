@@ -10,7 +10,7 @@ import DataService from "../../api/data.service";
 import { AUTH_LOGOUT } from "../actions/auth";
 import mapDataModel from "../models/map";
 
-const state = Object.assign({}, mapDataModel);
+const state = mapDataModel();
 
 const getters = {
   getMapPeriod: state => state.period,
@@ -56,7 +56,7 @@ const mutations = {
     state.period = period;
   },
   [AUTH_LOGOUT]: state => {
-    state = Object.assign({}, mapDataModel);
+    Object.assign(state, mapDataModel());
   }
 };
 

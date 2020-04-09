@@ -12,13 +12,15 @@ import AuthService from "../../api/auth.service";
 import { TokenService } from "../../services/storage.service";
 import router from "../../router";
 import { USER_REQUEST } from "../actions/user";
-
-const state = {
-  status: false,
-  errorMessage: null,
-  phone: null,
-  token: TokenService.get() || ''
-};
+const defaultState = () => {
+  return {
+      status: false,
+      errorMessage: null,
+      phone: null,
+      token: TokenService.get() || ''
+  }
+}
+const state = defaultState();
 
 const getters = {
   isPhoneApproved: state => state.phone,
@@ -68,10 +70,8 @@ const mutations = {
     state.errorMessage = msg;
     state.status = "false";
   },
-  [AUTH_LOGOUT]: () => {
-    state.phone = false;
-    state.errorMessage = null;
-    state.token = TokenService.get() || ''
+  [AUTH_LOGOUT]: state => {
+    Object.assign(state, defaultState());
   }
 };
 

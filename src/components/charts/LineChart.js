@@ -107,9 +107,9 @@ export default {
             },
             titleFontStyle: 'normal',
             bodyFontStyle: 'bold',
-            backgroundColor: 'rgba(0,0,0, 0.4)',
-            titleFontColor: '#fff',
-            bodyFontColor: '#fff',
+            backgroundColor: '#fff',
+            titleFontColor: '#333',
+            bodyFontColor: '#666',
             bodySpacing: 4,
             xPadding: 12,
             mode: "nearest",
@@ -117,6 +117,7 @@ export default {
             position: "nearest",
             displayColors: false
           },
+
           legend: { display: false },
           scales: {
             yAxes: [
@@ -176,9 +177,9 @@ export default {
             },
             titleFontStyle: 'normal',
             bodyFontStyle: 'bold',
-            backgroundColor: '#f3f9fa',
-            titleFontColor: '#333',
-            bodyFontColor: '#666',
+            backgroundColor: '#414d55',
+            titleFontColor: '#fff',
+            bodyFontColor: '#fff',
             bodySpacing: 4,
             xPadding: 12,
             mode: "nearest",
@@ -224,7 +225,7 @@ export default {
           }
         }
       },
-      page: this.$route.path
+      init: 0
     };
   },
   methods: {
@@ -297,7 +298,7 @@ export default {
   },
   watch: {
     chartData() {
-      this.render();
+      this.render()
     },
     theme() {
       this.render(true);

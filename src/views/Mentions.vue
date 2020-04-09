@@ -6,9 +6,11 @@
       </template>
       <template v-slot:content>
         <MentionsFilter v-if="filterLoaded"/>
-        <BlockList>
-          <List :load="isDataLoaded" :dataList="getMentions" />
-        </BlockList>
+        <transition appear name="reveal__block" >
+          <BlockList :load="filterLoaded && isDataLoaded">
+            <List :load="filterLoaded && isDataLoaded" :dataList="getMentions" />
+          </BlockList>
+        </transition>
       </template>
     </Section>
   </div>
@@ -50,3 +52,19 @@
     }
   }
 </script>
+<style lang="scss">
+
+  .reveal__block {
+    &-leave-active {
+      transition: .35s ease-out;
+    }
+    &-enter-active {
+      transition: .35s ease-in;
+      transition-delay: 150ms;
+    }
+    &-enter, &-leave-to {
+      opacity: 0;
+      transform: translate(3.5rem, 0);
+    }
+  }
+</style>

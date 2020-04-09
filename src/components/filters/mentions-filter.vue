@@ -1,6 +1,6 @@
 <template>
-  <div class="filters">
-    <div class="filters__item">
+  <transition-group appear tag="div" class="filters" name="filters__animate">
+    <div key="keywords" class="filters__item">
         <Dropdown
           :type="'keywords'"
           :options="getFilter.keywords"
@@ -10,7 +10,7 @@
         >
         </Dropdown>
     </div>
-    <div class="filters__item">
+    <div key="top" class="filters__item">
         <Dropdown
           :options="getFilter.limit_options"
           :type="'top'"
@@ -20,7 +20,7 @@
         >
         </Dropdown>
     </div>
-    <div class="filters__item">
+    <div key="countries" class="filters__item">
         <Dropdown
           :options="getFilter.countries"
           :type="'country'"
@@ -30,7 +30,7 @@
         >
         </Dropdown>
     </div>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -118,10 +118,34 @@ export default {
     transition: 0.3s ease-in-out;
     z-index: 150;
 
+    &__animate {
+
+      &-leave-active {
+        transition: .2s ease-out;
+        @for $i from 1 through 5 {
+          &:nth-last-child(#{$i}) {
+            transition-delay: $i * 100ms;
+          }
+        }
+      }
+      &-enter-active {
+        transition: .3s ease-in;
+        @for $i from 1 through 5 {
+          &:nth-child(#{$i}) {
+            transition-delay: $i * 100ms;
+          }
+        }
+      }
+
+      &-enter, &-leave-to {
+        opacity: 0;
+        transform: translate(3.5rem, 0);
+      }
+    }
+
     &__item {
       width: 100%;
       max-width: calc(100% / 3);
-
       @include tablet {
         margin-bottom: 2.5rem;
         margin-right: 1.5rem;

@@ -12,7 +12,7 @@ import { AUTH_LOGOUT } from "../actions/auth";
 import NotificationsService from "../../api/notifications.service";
 import NotificationsModel from "../models/notifications";
 
-const state = Object.assign({}, NotificationsModel);
+const state = NotificationsModel();
 
 const getters = {
   isNotifications: state => state.status,
@@ -73,6 +73,9 @@ const mutations = {
   },
   [NOTIFICATIONS_ERROR]: state => {
     state.status = false;
+  },
+  [AUTH_LOGOUT]: state => {
+    Object.assign(state, NotificationsModel())
   }
 };
 

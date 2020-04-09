@@ -1,21 +1,20 @@
 <template>
   <Section :title="'Результаты поиска'">
     <template v-slot:side>
-      <ChartCounter v-for="(val, key) in countersData" :counters="val" :type="key"/>
+      <ChartCounter v-for="(val, key) in countersData" :counters="val" :type="key" />
     </template>
     <template v-slot:content>
-      <Block>
+      <Block :loading="loading">
         <template v-slot:header>
-
           <PeriodSwitcher
-            :current="getPeriod"
-            :name="'chart'"
-            :callback="DATA_SWITCH"
-          ></PeriodSwitcher>
+              :current="getPeriod"
+              :name="'chart'"
+              :callback="DATA_SWITCH"
+            ></PeriodSwitcher>
         </template>
         <template v-slot:content>
-
           <line-chart
+            key="content"
             v-if="!loading"
             chart-id="main-chart"
             ref="lineChart"
@@ -24,13 +23,12 @@
             :positive="getChartFilters.positive"
             :negative="getChartFilters.negative"
           ></line-chart>
-          <LoaderSmall fixed v-else/>
         </template>
         <template v-slot:legend>
           <ChartControl></ChartControl>
         </template>
         <template v-slot:button>
-          <Button :isRoute="true" :route="'mentions'">Результаты поиска</Button>
+          <Button :isRoute="true" :route="'mentions'" >Результаты поиска</Button>
         </template>
       </Block>
     </template>
@@ -45,12 +43,12 @@ import Button from "../layout/Button";
 import Block from "../layout/Block";
 import { mapGetters, mapActions } from "vuex";
 import PeriodSwitcher from "../period-swicther";
-import LoaderSmall from "../loaders/loader-small";
+
 const LineChart = () => import(/* webpackChunkName: "LineChart" */"../charts/LineChart");
 export default {
   name: "DashboardChart",
   components: {
-    Section, ChartCounter, Block, LineChart, PeriodSwitcher, ChartControl, Button, LoaderSmall
+    Section, ChartCounter, Block, LineChart, PeriodSwitcher, ChartControl, Button
   },
   data() {
     return {

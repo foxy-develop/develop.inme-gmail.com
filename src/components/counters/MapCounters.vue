@@ -113,15 +113,21 @@
 
       @include tablet {
         max-width: 50%;
-        &:nth-child(odd), &:nth-child(even) {
-          padding-right: 1.5rem;
+        &:nth-child(odd) {
+          padding-right: 2rem;
+        }
+        &:nth-child(even) {
+          padding-left: 2rem;
         }
       }
 
       @include desktop {
         max-width: 100%;
-        &:nth-child(odd), &:nth-child(even) {
+        &:nth-child(odd) {
           padding-right: 0;
+        }
+        &:nth-child(even) {
+          padding-left: 0;
         }
       }
     }

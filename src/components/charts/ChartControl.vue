@@ -1,6 +1,7 @@
 <template>
-  <div class="chart-control">
+  <transition-group appear tag="div" class="chart-control" name="reveal-animate--top">
     <span
+      key="negative"
       :class="[
         'chart-control__info',
         'chart-control__info--danger',
@@ -11,6 +12,7 @@
       Негативные
     </span>
     <span
+      key="positive"
       :class="[
                 'chart-control__info',
                 'chart-control__info--normal',
@@ -20,7 +22,7 @@
     >
       Приемлимые
     </span>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -58,7 +60,7 @@
     position: relative;
     display: flex;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
+
 
     &:last-child {
       margin: auto 0 auto 5.2rem;

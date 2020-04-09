@@ -7,8 +7,9 @@ import {
 
 import NotificationsService from "../../api/notifications.service";
 import CurrentNotificationModel from "../models/current_notification";
+import {AUTH_LOGOUT} from "../actions/auth";
 
-const state = Object.assign({}, CurrentNotificationModel);
+const state = CurrentNotificationModel();
 
 const getters = {
   isNotificationLoaded: state => state.status,
@@ -35,7 +36,6 @@ const actions = {
   [NOTIFICATIONS_CURRENT_ERROR]: ({ commit }) => {
     commit(NOTIFICATIONS_CURRENT_ERROR);
   }
-
 };
 
 const mutations = {
@@ -52,6 +52,9 @@ const mutations = {
   [NOTIFICATIONS_CURRENT_ERROR]: state => {
     state.status = false;
     state.hasError = true;
+  },
+  [AUTH_LOGOUT]: state => {
+    Object.assign(state, CurrentNotificationModel);
   }
 };
 

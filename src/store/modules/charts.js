@@ -11,7 +11,7 @@ import DataService from "../../api/data.service";
 import { AUTH_LOGOUT } from "../actions/auth";
 import chartsDataModel from "../models/charts";
 
-const state = Object.assign({}, chartsDataModel);
+const state = chartsDataModel();
 
 const getters = {
   getPeriod: state => state.period,
@@ -67,7 +67,7 @@ const mutations = {
     state.period = period;
   },
   [AUTH_LOGOUT]: state => {
-    state = Object.assign({}, chartsDataModel);
+    Object.assign(state, chartsDataModel());
   }
 };
 

@@ -1,5 +1,5 @@
 import ApiService from "../services/api.service";
-import { TokenService, StorageService } from "../services/storage.service";
+import { TokenService, ThemeService } from "../services/storage.service";
 import { API_AUTH } from "./api.endpoints";
 
 class AuthenticationError extends Error {
@@ -52,7 +52,8 @@ const AuthService = {
 
   logout: function() {
     const response = ApiService.get(API_AUTH.LOGOUT);
-    StorageService.clear();
+    TokenService.remove();
+    ThemeService.remove();
     ApiService.removeHeader();
     return response;
   }

@@ -2,7 +2,9 @@
   <div class="main__content">
     <Section :title="'Отчеты о работе'" :navBtn="true">
       <template v-slot:content>
-        <router-view></router-view>
+        <transition name="fade-in-up" mode="out-in">
+          <router-view/>
+        </transition>
       </template>
     </Section>
   </div>

@@ -1,16 +1,16 @@
 <template>
-  <div class="main-loader" v-if="enableLoader"></div>
-  <div class="auth" v-else>
+  <div class="auth">
+    <LoaderSmall fixed :show="enableLoader" />
     <img class="auth__img" src="../assets/crystal.png" alt="crystal" />
     <img class="auth__logo" src="../assets/logo.svg" alt="ARTDOCK" />
-    <div class="auth__form">
+    <div class="auth__form" v-show="!enableLoader">
       <LoginForm/>
     </div>
-
   </div>
 </template>
 
 <script>
+  import LoaderSmall from "../components/loaders/loader-small";
   import LoginForm from "../components/login-form"
   import { mapGetters, mapActions } from "vuex";
   export default {
@@ -26,7 +26,7 @@
       titleTemplate: "%s | ArtDock Client Panel"
     },
     components: {
-      LoginForm
+      LoginForm, LoaderSmall
     },
     methods: {
       ...mapActions(['DATA_REQUEST']),
@@ -34,6 +34,7 @@
     },
     async beforeRouteLeave(to,from,next) {
       this.enableLoader = true;
+      console.log('run');
       const response = await this.DATA_REQUEST()
 
       if (this.isChartDataLoaded()) {

@@ -56,15 +56,16 @@ const routes = [
   },
   {
     path: "/reports",
-    name: "Reports",
     component: Reports,
     children: [
       {
         path: '',
+        name: "Reports",
         component: ReportsList
       },
       {
         path: ':id',
+        name: "Report",
         component: ReportCurrent
       }
     ]
@@ -79,7 +80,10 @@ const routes = [
 const router = new Router({
   mode: 'history',
   base: "./",
-  routes
+  routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  }
 });
 
 

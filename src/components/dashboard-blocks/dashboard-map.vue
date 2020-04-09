@@ -1,10 +1,10 @@
 <template>
-  <Section :title="'География выдачи'" v-if="!loading" reversed>
+  <Section :title="'География выдачи'" reversed :loading="loading">
     <template v-slot:side>
-      <MapCounters :data="sortArray" />
+      <MapCounters v-if="!loading" :data="sortArray" />
     </template>
     <template v-slot:content>
-      <Block responsive>
+      <Block responsive :loading="loading">
         <template v-slot:header>
           <PeriodSwitcher
             :current="getMapPeriod"
@@ -13,7 +13,7 @@
           ></PeriodSwitcher>
         </template>
         <template v-slot:content>
-          <ChartMap :data="getMapData"></ChartMap>
+          <ChartMap :data="getMapData" key="content" v-if="!loading"></ChartMap>
         </template>
         <template v-slot:button>
           <Button :isRoute="true" :route="'negative'">Просмотреть негатив</Button>
@@ -58,7 +58,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getMapPeriod', 'getMapData']),
+    ...mapGetters(['getMapPeriod', 'getMapData', 'isMapLoaded']),
     sortArray() {
       const arr = this.getMapData;
       const newArr = arr

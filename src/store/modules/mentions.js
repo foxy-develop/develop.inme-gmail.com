@@ -12,7 +12,7 @@ import { AUTH_LOGOUT } from "../actions/auth";
 import MentionsServive from "../../api/mentions.service";
 import MentionsModel from "../models/mentions";
 
-const state = Object.assign({}, MentionsModel);
+const state = MentionsModel();
 
 const getters = {
   isMentionsLoaded: state => state.status && state.filter && state.mentions,
@@ -88,7 +88,7 @@ const mutations = {
     state.status = false;
   },
   [AUTH_LOGOUT]: state => {
-    state = Object.assign({}, MentionsModel);
+    Object.assign(state, MentionsModel());
   }
 };
 

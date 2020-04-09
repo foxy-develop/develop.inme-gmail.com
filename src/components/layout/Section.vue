@@ -27,9 +27,15 @@
       </div>
     </div>
     <div :class="['section__inner', { 'section__inner--reversed' : reversed}]">
-      <div :class="['section__side', { 'section__side--start' : isStart }]">
-        <slot name="side"></slot>
-      </div>
+        <div :class="['section__side', { 'section__side--start' : isStart }]">
+          <transition
+            appear
+            name="reveal-animate--top">
+            <div class="section__side-inner" v-if="!loading">
+              <slot name="side"></slot>
+            </div>
+          </transition>
+        </div>
       <div class="section__content">
         <slot name="content"></slot>
       </div>
@@ -59,6 +65,7 @@ export default {
       required: false,
       type: Boolean
     },
+    loading: false,
     title: {
       type: String,
       required: true,
@@ -128,6 +135,16 @@ export default {
     flex-direction: row;
     width: 100%;
     justify-content: space-evenly;
+
+    &-inner {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%;
+      @include desktop {
+        flex-direction: column;
+      }
+    }
 
     &--start {
       justify-content: flex-start;

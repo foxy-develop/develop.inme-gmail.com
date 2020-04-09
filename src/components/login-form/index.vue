@@ -27,11 +27,10 @@
         </div>
       </label>
       <button :class="['login-form__btn', { 'login-form__btn--loading' : loading }]" type="submit" :disabled="loading">
-        <transition name="fade-in-up" mode="out-in">
-          <span v-if="!loading">{{ isPhoneApproved ? 'Подтвердить': 'Отправить' }}</span>
-          <LoaderSmall button v-else />
-        </transition>
-
+        <transition-group name="fade-in-out">
+          <span v-show="!loading" key="text">{{ isPhoneApproved ? 'Подтвердить': 'Отправить' }}</span>
+          <LoaderSmall button :show="loading" key="loader" />
+        </transition-group>
       </button>
     </form>
     <div class="login-form__notif">{{ getErrorMessage }}</div>

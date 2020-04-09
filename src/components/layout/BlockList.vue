@@ -1,25 +1,31 @@
 <template>
-<div class="block-list">
-  <div class="block-list__content">
-    <slot></slot>
-  </div>
-</div>
+    <div class="block-list" v-if="load">
+      <div class="block-list__content">
+          <slot></slot>
+      </div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "BlockList"
+  name: "BlockList",
+  props: {
+    load: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
+
   .block-list {
     display: flex;
     flex-shrink: 0;
     border-radius: 0.8rem;
     padding: 1rem 0;
     box-sizing: border-box;
-    transition: 0.15s ease-in-out;
     background-color: var(--el_bg);
     flex-direction: column;
     flex-grow: 1;

@@ -1,27 +1,48 @@
 <template>
-  <div class="block">
-    <div class="block__header">
-      <slot name="header"></slot>
+  <div :class="['block', { 'block--responsive' : responsive}]">
+    <div class="block__header" >
+      <transition appear name="reveal-animate--top" mode="out-in">
+        <slot name="header" v-if="!loading"></slot>
+      </transition>
     </div>
-    <div :class="['block__content', { 'block__content--responsive' : responsive}]">
-      <slot name="content"></slot>
-    </div>
+    <transition-group
+      tag="div"
+      appear
+      :class="['block__content', { 'block__content--responsive' : responsive}]"
+      name="reveal-animate--top"
+      mode="out-in">
+        <slot name="content"></slot>
+        <LoaderSmall key="loader" fixed :show="loading" v-show="loading"/>
+    </transition-group>
     <div class="block__footer">
       <div class="block__footer--left">
-        <slot name="legend"></slot>
+        <transition appear name="reveal-animate--top" mode="out-in">
+          <slot name="legend" v-if="!loading"></slot>
+        </transition>
       </div>
       <div class="block__footer--right">
-        <slot name="button"></slot>
+        <transition appear name="reveal-animate--top"  mode="out-in">
+          <slot name="button" v-if="!loading"></slot>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import LoaderSmall from "../loaders/loader-small";
+
   export default {
     name: "Block",
+    components: {
+      LoaderSmall
+    },
     props: {
       responsive: {
+        type: Boolean,
+        default: false
+      },
+      loading: {
         type: Boolean,
         default: false
       }
@@ -30,6 +51,7 @@
 </script>
 
 <style scoped lang="scss">
+
 .block {
   display: flex;
   flex-shrink: 0;
@@ -40,7 +62,14 @@
   background-color: var(--el_bg);
   flex-direction: column;
   flex-grow: 1;
-  max-height: 70rem;
+
+
+  &--responsive {
+    @include tablet {
+      height: 70rem;
+    }
+  }
+
   &__header {
     display: flex;
     margin-bottom: 2rem;
@@ -48,6 +77,7 @@
 
     @include tablet {
       margin-bottom: 4rem;
+      height: 4rem;
       justify-content: flex-start;
     }
 
@@ -62,10 +92,10 @@
     height: 40rem;
     &--responsive {
       height: auto;
+      flex-grow: 1;
       margin-bottom: 0;
     }
   }
-
 
   &__footer {
     display: flex;
@@ -73,9 +103,9 @@
     flex-wrap: wrap;
     justify-content: center;
     position: relative;
-
     @include tablet {
       justify-content: space-between;
+      height: 4.8rem
     }
 
     &--left {
